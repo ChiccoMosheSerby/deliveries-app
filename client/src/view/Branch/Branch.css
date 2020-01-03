@@ -1,0 +1,28 @@
+.cardFlex{
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    justify-content: center;
+
+}
+
+.cardFlex div{
+
+    width: 100%;
+}
+
+.fff{
+    padding:10px;
+    border-radius:10px;
+    background-color: #282c34;
+    color:white;
+    font-weight: bolder;
+    width: fit-content;
+    margin:auto;
+    line-height: 50px;
+    font-size: 1rem;
+    border:solid rgba(255, 255, 255, 0.377) 1px;
+    justify-content: space-around;
+    cursor: pointer;
+    user-select: none;
+}

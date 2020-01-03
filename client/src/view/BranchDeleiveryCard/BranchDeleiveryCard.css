@@ -1,0 +1,87 @@
+
+  .links{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+  }
+  
+  .call{
+    border: 1px solid var(--firstColorOpacity);
+    border-radius: 50%;
+    width:20px;
+    height: 20px;
+    padding:5px;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+.tooltip {
+    border: 1px solid var(--firstColorOpacity);
+    border-radius: 50%;
+    width:20px;
+    height: 20px;
+    padding:2px;
+    font-weight: bold;
+    line-height: 20px;
+
+  }
+
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 10px;
+  
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+  }
+  
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }
+  .tooltip:hover{
+      background-color: var(--firstColorOpacity); 
+
+  }
+.BranchDeleiveryCard{
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+    align-content: center;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.815);
+
+    width: 50%;
+    margin: auto;
+    /* background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain; */
+    border: var(--secondColorOpacity) 1px solid;
+    font-size: 0.8rem;
+    color: var(--firstColor);
+    /* font-weight: bold; */
+    }
+
+.BranchDeleiveryCard:hover{
+  background-color: rgb(255, 255, 255);
+  cursor: pointer;
+}
+
+@media screen and (max-width: 800px) {
+
+.tooltip {
+  border: 1px solid var(--firstColorOpacity);
+  border-radius: 50%;
+  width:10px;
+  height: 10px;
+  padding:2px;
+  line-height: 10px;
+  font-weight: bold;
+  }
+
+}

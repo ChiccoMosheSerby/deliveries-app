@@ -1,0 +1,99 @@
+.deliveryForm{
+    display:grid;
+    grid-template-rows:1fr 1fr 1fr;
+    width: 600px;
+    margin:auto;
+    margin-top:20px;
+    text-align: center;
+    /* height: calc(100vh - 200px); */
+}
+
+.oneRow{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: center;
+}
+
+::placeholder{
+    text-align: center;
+    color:var(--secondColor);
+    background-color: rgba(255, 255, 255, 0.877);
+    line-height: 100px;
+}
+
+.oneRow input, .city{
+    height: 50px;
+    line-height: 50px;
+    border-radius:10px;
+    text-align: center;
+    color:var(--firstColor);
+    outline: none;
+    border:var(--secondColorOpacity) 1px solid;
+    min-width: 150px;
+}
+.city span{
+    color:var(--firstColor);
+font-weight: bold;}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance:textfield;
+}
+
+
+.submitBtn{
+    /* background-color: var(--firstColorOpacity); */
+    color:var(--secondColor);
+    font-weight: bold;
+    border:var(--secondColorOpacity) 1px solid;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    line-height: 150px;
+    margin:auto;
+    margin-bottom:5px;
+    background-color: white;
+
+    /* text-shadow:
+    -1px -1px 0 rgb(255, 255, 255),  
+        1px -1px 0 rgb(255, 255, 255),
+        -1px 1px 0 rgb(250, 250, 250),
+        1px 1px 0 rgb(255, 255, 255); */
+        background-image: url("/img/go.png");
+        background-position: left center;
+        background-size: cover;
+        background-repeat: no-repeat;
+}
+
+.submitBtn:hover{
+    cursor: pointer;
+    color:black;
+    background-color: var(--firstColorOpacity);
+}
+.city{
+    color:black;
+   background-color: var(--secondColorOpacity);
+}
+
+@media screen and (max-width: 800px) {
+    .deliveryForm{
+        width: 100vw;
+    }
+
+    .oneRow{
+        justify-content: space-around;
+    }
+
+    .oneRow input, .city{
+        margin:5px;
+    }
+}

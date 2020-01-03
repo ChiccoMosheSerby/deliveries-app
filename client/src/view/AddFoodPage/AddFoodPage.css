@@ -1,0 +1,224 @@
+.addFoodPageWrapper{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+}
+.orderSideWrapper{
+    grid-column: 2;
+    grid-row: 1/end;
+    box-shadow: 10px 10px 5px #aaaaaa;
+    border:1px solid rgb(209, 209, 209);
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content:center;
+    align-content: flex-start;
+    /* border:var(--firstColor) 1px solid; */
+    height: calc(100vh - 250px);
+    /* max-height: calc(100vh - 100px); */
+    position: sticky;
+    top:147px;
+    left:2px;
+    overflow-y:scroll;
+    background-color: rgba(255, 255, 255, 0.719);
+    border-radius: 10px;
+}
+
+.dishTypeHeader{
+    color:var(--secondColor);
+    font-weight: bold;
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+.orderSide{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr 1fr 1.5fr;
+    justify-items: center;
+    align-items: center;
+    border:var(--firstColorOpacity) 1px solid;
+    border-radius: 10px;
+    width: 100%;
+    margin:5px;
+    padding:10px;
+}
+
+.foodWrapper{
+    display:flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content:center;
+    align-content: flex-start;
+    /* border:var(--firstColor) 1px solid; */
+    height: fit-content;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    color: var(--firstColor);
+  }
+  
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    height: fit-content;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+  
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+  }
+  
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }
+.dishType{
+    width: 100%;
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content:flex-start;
+    align-content: flex-start;
+    /* border:var(--firstColor) 1px solid; */
+    height: fit-content;
+}
+
+.foodWrapper p{
+text-align: right;
+}
+.foodCard{
+    display:grid;
+    grid-template-rows:1fr 2fr;
+    justify-items: center;
+    align-items: flex-start;
+    border:var(--secondColorOpacity) 1px solid;
+    border-radius: 15px;
+    width: 170px;
+    height: 200px;
+    margin:10px;
+    color: black;
+    /* text-shadow:
+    -1px -1px 0 #000,  
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000; */
+        box-shadow: 10px 10px 5px #aaaaaa;
+        /* backgroundPosition: 'center bottom',
+        backgroundSize: '100% 50%',
+        backgroundRepeat: 'no-repeat' */
+        background-position: center bottom;
+        background-size: 100% 50%;
+        background-repeat: no-repeat;
+        background-color: rgba(255, 255, 255, 0.719);
+
+}
+
+.foodCard:hover{
+cursor: pointer;
+}
+
+.orderItemCard{
+    display:grid;
+    grid-template-columns: 1fr 0.5fr 0.5fr 0.5fr 2fr;
+    text-align: right;
+    justify-items: flex-start;
+    align-items: center;
+    /* border:var(--firstColorOpacity) 1px solid; */
+    border-radius: 10px;
+    width: 100%;
+    margin:5px;
+    padding:10px;
+    font-weight: bold;
+}
+.goToBtn{
+        border:var(--secondColorOpacity) 1px solid;
+        background-image: url("/img/go.png");
+        background-position: left center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        margin: auto;
+}
+
+.goToBtn:hover{ 
+    background-color: var(--firstColorOpacity);
+
+}
+.plus, .minus{
+    color:green;
+    border: none;
+   border-radius: 5px;
+   background-position: center;
+   background-size: cover;
+    font-weight: bold;
+    width: 15px;
+    height: 15px;
+    padding:10px;
+    box-shadow: 1px 1px 1px grey;
+}
+
+
+
+.plus:hover, .minus:hover{
+cursor: pointer;
+}
+
+*:focus{
+    outline:none;
+
+}
+.plus:active,.minus:active{
+    box-shadow: 1px 5px 5px 1px rgb(255, 251, 0);
+
+}
+
+.showFullOrderbtn{
+    visibility: hidden;
+    width: 0;
+    height: 0;
+    display:none;
+}
+/* @media screen and (max-width: 800px) {
+    .addFoodPageWrapper{
+        grid-template-columns: 1fr;
+    }
+
+    .foodCard{
+        width: 33vw;
+        height: 180px;
+    }
+    .foodWrapper{
+        display:flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content:space-evenly;
+        align-content: flex-start;
+        border:var(--firstColor) 1px solid;
+    }
+
+    .orderSideWrapper{
+        display:none;
+        width: 0;
+        height: 0;
+            }
+
+            .dishType{
+                width: 100%;
+                display:flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content:space-around;
+                align-content: flex-start;
+            }
+        .showFullOrderbtn{
+            visibility: visible;
+            width: 50px;
+            height: 50px;
+            display:block;
+        }
+} */

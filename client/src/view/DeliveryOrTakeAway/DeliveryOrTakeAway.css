@@ -1,0 +1,37 @@
+.twoOptionsWrapper{
+    display:flex;
+  
+    justify-content: space-around;
+    height: 70vh;
+    max-width: 550px;
+    margin:auto;
+    }
+
+.twoOptions{
+    width: 70vw;
+    margin: auto;
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: center;
+    border: var(--secondColorOpacity) solid 1px;
+    border-radius:20px;
+    background-color: rgba(255, 255, 255, 0.719);
+
+}
+
+.twoOptions div{
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    line-height: 180px;
+    margin:10px;
+    color:rgb(0, 0, 0);
+    font-weight: bold;
+    font-size: 1.5rem;
+    border:solid 1px var(--secondColorOpacity);
+}
+.twoOptions div:hover{
+    background-color: var(--firstColorOpacity);
+}

@@ -1,0 +1,164 @@
+:root{
+  /* --firstColor : rgb(5, 165, 0);
+  --firstColorOpacity : #c2ebd4;
+  --secondColor : #32b7e9;
+  --secondColorOpacity : #32b8e94b; */
+  --firstColor : #2bb6af;
+  --firstColorOpacity : #c2cceb;
+  --secondColor : #eb7d5b;
+  --secondColorOpacity : #ffd8baa9;
+  /* --headerBkColor : #04050585; */
+  --headerBkColor :#0b75a7;
+  --headerBkColorBrighter : #4048634d;
+}
+
+/* scrollbar--------------------------------------------- */
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--firstColorOpacity); 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondColorOpacity); 
+}
+/* end - scrollbar--------------------------------------------- */
+
+a{
+  text-decoration: none;
+  color:var(--firstColor);
+}
+.AppWapper {
+  text-align: center;
+  direction:rtl;
+  background-color: white;
+  background-color: #e8f9ff;
+
+  background-image: url("/img/veganBG4.png");
+  background-position: fixed ;
+  background-size: 100%;
+  background-repeat: repeat;
+  min-height: 100vh;
+}
+
+.App-logo {
+  height: 100px;
+  border-radius:20px;
+  grid-column: 1;
+  grid-row: 1/end;
+}
+
+.App-header {
+  /* background-color: var(--headerBkColor); */
+  background-color: #bdd6de;
+  background-image: url(/img/header.gif);
+  background-position: center;
+  background-size:100vw 100%;
+  background-repeat: no-repeat;
+  display: grid;
+  grid-template-rows: 1fr ;
+
+  align-items: center;
+  justify-content:center;
+  /* font-size: calc(10px + 2vmin); */
+  color: white;
+  height: 250px;
+}
+
+.manager {
+  position: absolute;
+  font-size: 0.8rem;
+  top:10px;
+  left:10px;
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+}
+
+.manager input[type=text]{
+  height:25px ;
+  min-width: 50px;
+  line-height: 25px;
+  border-radius: 10px;
+  text-align: center;
+  background-color: var(--headerBkColorBrighter);
+  border:var(--secondColorOpacity) solid 1px;
+  color: var(--firstColor);
+  outline: none;
+  }
+  .nav_item{
+    padding: 10px;
+    color:var(--firstColorOpacity);
+}
+  
+.manager input[type=submit]{
+  height:25px ;
+  min-width: 50px;
+  line-height: 25px;
+  border-radius: 10px;
+  text-align: center;
+  background-color: var(--headerBkColorBrighter);
+  border:var(--firstColorOpacity) solid 1px;
+  outline: none;
+
+  }
+
+  .manager input[type=submit]:hover{
+    cursor: pointer;
+    background-color: var(--secondColorOpacity);
+    color:white;
+  }
+
+.grid{
+  display: grid;
+  grid-template-columns: auto auto ;
+  width:50vw;
+  min-height: calc(100vh - 500px);
+  grid-gap:5px;
+  margin: auto;
+  margin-top:50px;
+  align-items: center;
+}
+
+#mapid{
+  height: 300px;
+  width: 300px;
+}
+@media screen and (max-width: 800px) {
+  .grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr ;
+    width: 100vw;
+    height: calc(100vh - 300px);
+      }
+
+      .AppWapper {
+ 
+        background-size: cover;
+        
+      
+      }
+
+
+  .App-header {
+    background-color: var(--headerBkColor);
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content:flex-start;
+    font-weight: 0.7rem;
+  }
+}
