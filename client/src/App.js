@@ -45,7 +45,10 @@ class App extends Component {
       orderList: [],
       orderItems: [],
       branches: [],
-      pageId: 1
+      pageId: 1,
+      orderTrack: '',
+      statusMsg: '',
+      trackedOrder: ''
     }
     //get branches from DB
 
@@ -60,6 +63,7 @@ class App extends Component {
     this.setPageId = this.setPageId.bind(this);
     this.newOrderAccepted = this.newOrderAccepted.bind(this);
     this.done = this.done.bind(this);
+    this.showOrderStatus = this.showOrderStatus.bind(this);
 
   }
 
@@ -97,12 +101,54 @@ class App extends Component {
   //see deliveriesToDo list : only manager with pass
   isManager(e) {
     e.preventDefault();
+
     if (e.target.elements.pass.value === '1234') {
       this.setState({ isManager: true });
+      fetch("http://localhost:4000/getOrderList",
+        {
+          method: 'POST',
+          body: JSON.stringify({ tst:'tst'}),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+      ).then(result => {
+        result.json().then(res => {
+          
+          this.setState({ orderItems: res.list })
+          console.dir(this.state.orderItems)
+        })
+      }
+
+      )
+
     }
     else {
       this.setState({ isManager: false });
     }
+  }
+
+  //show order status
+  showOrderStatus(e) {
+    e.preventDefault();
+    let orderNumToShow = e.target.elements.orderNum.value;
+    fetch("http://localhost:4000/orderStatusToShow",
+      {
+        method: 'POST',
+        body: JSON.stringify({ orderNumToShow }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+    ).then(result => {
+      result.json().then(res => {
+
+        this.setState({ statusMsg: res.msg, trackedOrder: res.order })
+      })
+    }
+
+    )
+
   }
 
   //the branch clicked by client in first page
@@ -137,6 +183,7 @@ class App extends Component {
     this.setState({ orderTime: date })
   }
 
+  //http://localhost:4000/newOrder
   newOrderAccepted(newOrderAccepted) {
     fetch("http://localhost:4000/newOrder",
       {
@@ -147,8 +194,8 @@ class App extends Component {
         }
       }
     ).then(result => {
-      result.json().then(doc => {
-        this.setState({ orderItems: doc })
+      result.json().then(res => {
+        this.setState({ orderItems: res.list, orderTrack: res.track, statusMsg: 'new' })
       })
     }
 
@@ -159,20 +206,18 @@ class App extends Component {
 
     let updatedList = this.state.orderItems;
     updatedList[i].status = 'done';
+    let orderNum = updatedList[i].orderNum;
+    console.log(orderNum)
+
     this.setState({ orderItems: updatedList });
     fetch("http://localhost:4000/updateOrdersList",
       {
         method: 'POST',
-        body: JSON.stringify(updatedList),
+        body: JSON.stringify({ orderNum: orderNum }),
         headers: {
           'Content-Type': 'application/json'
         }
       }
-    ).then(result => {
-      result.json().then(doc => {
-      })
-    }
-
     )
   }
 
@@ -203,12 +248,18 @@ class App extends Component {
                   <div> <input name="submit" type="submit" value="כנס"></input></div>
                 </div>
               </form>
-
+              <form onSubmit={(e) => { this.showOrderStatus(e) }}>
+                <div className="orderNum">
+                  <div>   הזן/י מספר הזמנה לבדיקת סטטוס הזמנתך: <input name="orderNum" type="text"></input></div>
+                  <div> <input name="submit" type="submit" value="אישור"></input></div>
+                </div>
+              </form>
+              <p>{this.state.statusMsg}</p>
             </header>
 
             {this.state.isManager ?
               <OrdersToDo
-                fullOrder={this.state.orderList}
+                // fullOrder={this.state.orderList}
                 ordersToDo={this.state.orderItems}
                 done={this.done} ></OrdersToDo>
 
@@ -276,11 +327,12 @@ class App extends Component {
                   <FullOrder newOrderAccepted={this.newOrderAccepted} fullOrder={this.state.orderList} state={this.state} />
                 </Route>
                 <Route path="/ordersToDo">
-                  תודה - ההזמנה כבר במטבח ותכף אצלך!!
-                  {/* <OrdersToDo 
-                    fullOrder={this.state.orderList}
-                    ordersToDo={this.state.orderItems}
-                    done={this.done} ></OrdersToDo> */}
+                  <p className="finalMsg">להלן מספר הזמנה לבדיקת סטטוס הזמנה :
+                  <div>{this.state.orderTrack}</div>
+                  </p>
+                  <p>סטטוס: הזמנה
+                    {this.state.statusMsg}
+                  </p>
                 </Route>
 
               </Switch>

@@ -99,12 +99,35 @@ a{
   color: var(--firstColor);
   outline: none;
   }
+
+  .orderNum{
+    position: absolute;
+    font-size: 0.8rem;
+    top:10px;
+    right:10px;
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+  }
+
+  .orderNum input[type=text]{
+    height:25px ;
+    min-width: 50px;
+    line-height: 25px;
+    border-radius: 10px;
+    text-align: center;
+    background-color: var(--headerBkColorBrighter);
+    border:var(--secondColorOpacity) solid 1px;
+    color: var(--firstColor);
+    outline: none;
+  }
   .nav_item{
     padding: 10px;
     color:var(--firstColorOpacity);
 }
   
-.manager input[type=submit]{
+.manager input[type=submit],.orderNum input[type=submit]{
   height:25px ;
   min-width: 50px;
   line-height: 25px;
@@ -116,7 +139,7 @@ a{
 
   }
 
-  .manager input[type=submit]:hover{
+  .manager input[type=submit]:hover,.orderNum input[type=submit]:hover{
     cursor: pointer;
     background-color: var(--secondColorOpacity);
     color:white;
@@ -132,7 +155,13 @@ a{
   margin-top:50px;
   align-items: center;
 }
-
+.finalMsg div{
+    -webkit-user-select: all;  /* Chrome all / Safari all */
+    -moz-user-select: all;     /* Firefox all */
+    -ms-user-select: all;      /* IE 10+ */
+    user-select: all; 
+    font-weight: bolder;
+}
 #mapid{
   height: 300px;
   width: 300px;
