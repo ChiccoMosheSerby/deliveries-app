@@ -1,32 +1,10 @@
 const express = require("express");
 const router = express.Router();
-
-const mongoose = require('mongoose');//npm i mongoose
-
+const orderTodoCollection = require('../DB/ordersSchema')
 
 function uniqid() {
     return Math.random().toString(16).slice(2) + (new Date()).getTime() + Math.random().toString(16).slice(2);
 }
-//Define a schema
-const Schema = mongoose.Schema;
-const orderTodoSchema = new Schema({
-    orderItemsList: Array,
-    selectedBranch: String,
-    DeleiveryOrTakeAway: String,
-    clientStreet: String,
-    clientStreetNumber: Number,
-    clientPhoneNumber: String,
-    clientName: String,
-    clientEmail: String,
-    paymentType: String,
-    isManager: Boolean,
-    orderTime: String,
-    total: Number,
-    orderNum: String,
-    status: String
-});
-
-const orderTodoCollection = mongoose.model('orders', orderTodoSchema);
 
 router.post('/', (req, res) => {
 
@@ -71,12 +49,29 @@ router.post('/', (req, res) => {
         });
         let mailOptions = {
             from: 'some@tst.com',
+            // to: 'chiccomoshe@gmail.com',
+            to:newOrder.clientEmail,
+            subject: 'we recived your order from vegan food - ' + newOrder.selectedBranch,
+            text: 'your order number for tracking: ' + newOrder.orderNum
+        };
+        let mailOptions2 = {
+            from: 'some@tst.com',
             to: 'chiccomoshe@gmail.com',
-            subject: 'new order for branch: ' + newOrder.selectedBranch,
-            text: 'new order: ' + newOrder.orderNum
+            // to:newOrder.clientEmail,
+            subject: 'new order - ' + newOrder.selectedBranch,
+            text: 'order number: ' + newOrder.orderNum
         };
 
         transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+                console.log(error);
+
+            } else {
+
+                console.log('Email sent');
+            }
+        });
+        transporter.sendMail(mailOptions2, function (error, info) {
             if (error) {
                 console.log(error);
 

@@ -62,9 +62,8 @@
     background-repeat: no-repeat;
     background-size: contain; */
     border: var(--secondColorOpacity) 1px solid;
-    font-size: 0.8rem;
     color: var(--firstColor);
-    /* font-weight: bold; */
+    font-weight: bold;
     }
 
 .BranchDeleiveryCard:hover{

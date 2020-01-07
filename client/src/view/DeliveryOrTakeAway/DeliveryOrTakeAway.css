@@ -35,3 +35,18 @@
 .twoOptions div:hover{
     background-color: var(--firstColorOpacity);
 }
+@media screen and (max-width: 800px) {
+    .twoOptionsWrapper{
+height: fit-content;    }
+.twoOptions{
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+    .twoOptions div{
+        width: 35vw;
+        height: 35vw;
+        line-height: 35vw;
+        font-size: 2rem;
+    }
+}

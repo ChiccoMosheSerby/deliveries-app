@@ -1,26 +1,26 @@
 const branches = require('../DB/branches.js');
 const express = require("express");
 const router = express.Router();
-const mongoose = require('mongoose');//npm i mongoose
-
-
-//Define a schema
-const Schema = mongoose.Schema;
-const branchesSchema = new Schema({
-    branchId: String,
-    branchPhoneNum: String,
-    branchCity: String,
-    branchStreet: String,
-    branchStreetNum: String,
-    openHour: String,
-    closeHour: String,
-    openHourWeekend: String,
-    closeHourWeekend: String
-});
-
-const branchesCollection = mongoose.model('branches', branchesSchema);
+const branchesCollection = require('../DB/branchesSchema')
 
 router.post('/', (req, res) => {
+    // get all branches to DB
+    branchesCollection.find((err, docs) => {
+        if (err) {
+            throw err;
+        }
+        else {
+            console.log('found', docs)
+            // Contacts = docs;     
+        }
+    }).then(t=>{
+        res.send(t);
+    })
+    res.send({ branches })
+})
+module.exports = router;
+
+
     //Add order to DB
     // let branch = {
     //     branchId: '1',
@@ -87,22 +87,3 @@ router.post('/', (req, res) => {
     // branchesDoc.save().then(doc => {
     //     console.log('added: ', doc)
     // })
-    // get all branches to DB
-    branchesCollection.find((err, docs) => {
-        if (err) {
-            throw err;
-        }
-        else {
-            console.log('found', docs)
-            // Contacts = docs;
-           
-        }
-    }).then(t=>{
-        res.send(t);
-    })
-
-
-    res.send({ branches })
-})
-
-module.exports = router;

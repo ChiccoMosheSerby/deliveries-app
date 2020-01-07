@@ -12,6 +12,7 @@ import {
 //DB
 // import branches from './view/DB/branches';
 
+
 //components----------------------------------------------///////////////////
 import FullOrder from './view/FullOrder/FullOrder';
 
@@ -103,25 +104,23 @@ class App extends Component {
     e.preventDefault();
 
     if (e.target.elements.pass.value === '1234') {
-      this.setState({ isManager: true });
+
       fetch("http://localhost:4000/getOrderList",
         {
           method: 'POST',
-          body: JSON.stringify({ tst:'tst'}),
+          body: JSON.stringify({ tst: 'tst' }),
           headers: {
             'Content-Type': 'application/json'
           }
         }
       ).then(result => {
         result.json().then(res => {
-          
           this.setState({ orderItems: res.list })
           console.dir(this.state.orderItems)
+          this.setState({ isManager: true });
         })
       }
-
       )
-
     }
     else {
       this.setState({ isManager: false });
@@ -254,9 +253,26 @@ class App extends Component {
                   <div> <input name="submit" type="submit" value="אישור"></input></div>
                 </div>
               </form>
-              <p>{this.state.statusMsg}</p>
-            </header>
 
+            </header>
+            {
+              this.state.statusMsg === 'new' ?
+                <div style={{
+                  fontWeight:'bolder',
+                  backgroundColor:'#FFF',
+                  padding:'20px'
+                }}>הזמנתך במטבח מתבשלת<p>תודה על הסבלנות</p></div> :
+                <div></div>}
+            {
+              this.state.statusMsg === 'done' ?
+                <p style={{
+                  fontWeight:'bolder',
+                  backgroundColor:'#FFF',
+                  padding:'20px'
+                }}>מוכן!! בדרך אליך במידה וביצעת הזמנת משלוח - אם ביצעת איסוף עצמי אז... בוא כבר!</p>
+                :
+                <div></div>
+            }
             {this.state.isManager ?
               <OrdersToDo
                 // fullOrder={this.state.orderList}
@@ -264,6 +280,7 @@ class App extends Component {
                 done={this.done} ></OrdersToDo>
 
               :
+
               <Switch>
                 <Route exact path="/">
                   {/* <div id="mapid"></div> */}
@@ -321,6 +338,7 @@ class App extends Component {
 
                 </Route>
 
+
                 <Route path="/summery">
                   <Order state={this.state} />
 
@@ -330,9 +348,7 @@ class App extends Component {
                   <p className="finalMsg">להלן מספר הזמנה לבדיקת סטטוס הזמנה :
                   <div>{this.state.orderTrack}</div>
                   </p>
-                  <p>סטטוס: הזמנה
-                    {this.state.statusMsg}
-                  </p>
+
                 </Route>
 
               </Switch>

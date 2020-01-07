@@ -31,7 +31,7 @@ class CreditOrCash extends Component {
                             backgroundPosition: "center",
                             backgroundSize: "contain",
                             backgroundRepeat: "no-repeat",
-                            backgroundColor:"hsla(46, 100%, 50%, 0.286)",
+                            backgroundColor:"#ffc500",
 
                         }}></div>
                     </Link>
