@@ -47,8 +47,8 @@ class App extends Component {
       orderTrack: '',
       statusMsg: '',
       trackedOrder: '',
-      hostVar :'' // production
-      // hostVar: 'http://localhost:4000' //development
+      // hostVar :'' // production
+      hostVar: 'http://localhost:4000' //development
     }
 
     //handlers binds ///////////
