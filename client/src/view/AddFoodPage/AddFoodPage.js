@@ -5,7 +5,6 @@ import {
     Link
 } from "react-router-dom";
 
-//db
 
 class AddFoodPage extends Component {
     constructor(props) {
@@ -13,8 +12,6 @@ class AddFoodPage extends Component {
         this.state = {
             orderList: [],
             total: 0,
-            showFullOrder: false,
-            width: 0, height: 0,
             mainDishes: [],
             sideDishes: [],
             diserts: []
@@ -24,14 +21,12 @@ class AddFoodPage extends Component {
         this.orderListHandler = this.orderListHandler.bind(this);
         this.scrollToBottom = this.scrollToBottom.bind(this);
         this.changeQtt = this.changeQtt.bind(this);
-        this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
-
     }
 
 
     componentDidMount() {
 
-        fetch("http://localhost:4000/menu",
+        fetch(this.props.state.hostVar + "/menu",
             {
                 method: 'POST',
                 body: JSON.stringify({}),
@@ -42,9 +37,7 @@ class AddFoodPage extends Component {
         ).then(result => {
             console.log(result)
             result.json().then(doc => {
-                // console.dir( 'doc.mainDishes');
 
-                // console.dir(doc.menu.mainDishes);
                 this.setState({
                     mainDishes: doc.mainDishes,
                     sideDishes: doc.sideDishes,
@@ -57,47 +50,34 @@ class AddFoodPage extends Component {
         )
 
 
-        this.updateWindowDimensions();
-        window.addEventListener('resize', this.updateWindowDimensions);
     }
 
-    componentWillUnmount() {
-        window.removeEventListener('resize', this.updateWindowDimensions);
-    }
 
-    updateWindowDimensions() {
-        this.setState({ width: window.innerWidth, height: window.innerHeight });
-        if (this.state.width < 800) {
-            this.setState({ showFullOrder: true })
-        }
-        else {
-            this.setState({ showFullOrder: false })
-
-        }
-    }
     componentDidUpdate() {
         console.log(window.innerWidth, window.innerHeight)
         this.scrollToBottom();
-        // if (window.innerWidth <600pxheight: window.innerHeight
     }
 
     scrollToBottom() {
-        if (this.state.showFullOrder) {
+        if (document.getElementById('orderSideWrapper')) {
             let element = document.getElementById('orderSideWrapper');
             element.scrollTop = element.scrollHeight;
-            // do something at end of scroll
         }
+        if (document.getElementById('topCartMobile')) {
+
+            let element2 = document.getElementById('topCartMobile');
+            element2.scrollTop = element2.scrollHeight;
+        }
+
     }
     orderListHandler(dish, dishPrice) {
-        // console.log(dish, dishPrice);
 
-
-        // this.setState({ total: this.state.total + dishPrice })
         let orderItem = { dishName: dish, dishPrice: dishPrice, qtt: 1, orderItemPrice: dishPrice };
         this.setState({ orderList: [...this.state.orderList, orderItem] })
-        // console.log(this.state.orderList);
 
-        this.setState({ total: this.state.total + dishPrice })
+        this.setState({ total: this.state.total + dishPrice });
+        // this.scrollToBottom();
+
     }
 
     changeQtt(index, PlusOrMinusOne) {
@@ -119,33 +99,86 @@ class AddFoodPage extends Component {
     render() {
         return (
             <div className="addFoodPageWrapper">
+
+                {/* calculation - mobile -------------------------------------------*/}
                 < div className='foodWrapper'>
-                    <p className="dishTypeHeader">עיקריות</p>
+                    {
+                        this.state.total !== 0 ?
 
-                    <div className="dishType">
-                        {
-                            this.state.mainDishes.map((dish, index) => {
-                                return (
-                                    <div className="foodCard"
-                                        onClick={(dishName) => { this.orderListHandler(dish.dishName, dish.price) }}
-                                        style={{
-                                            backgroundImage: "url(" + dish.img + ")"
-                                        }}>
-                                        <div>
-                                            <div key={index}>{dish.dishName}</div>
-                                            <div class="tooltip">i<span class="tooltiptext">{dish.description}</span>
+                            <div id="topCartMobile" className="onlyMobileElement topCartMobile"
+                                style={{
+
+                                    backgroundColor: "var(--secondColorOpacity2)",
+                                    zIndex: '1'
+                                }}>
+                                <div id="orderSideWrapperMobile" className="orderSideWrapperMobile" >
+
+                                    {
+
+                                        this.state.orderList.map((oderItem, index) => {
+                                            return (
+                                                <div key={index} className="orderItemCard">
+                                                    <div>{oderItem.dishName}</div>
+
+
+
+                                                    <div onClick={() => { this.changeQtt(index, 1) }}
+                                                        style={{
+                                                            backgroundImage: "url('img/plus.png')",
+                                                        }}
+                                                        className="plus"></div>
+
+
+
+                                                    <div onClick={() => { this.changeQtt(index, -1) }}
+                                                        style={{
+                                                            backgroundImage: "url('img/minus.png')",
+                                                        }}
+                                                        className="minus"></div>
+
+
+
+                                                    <div>{oderItem.qtt}</div>
+                                                    <div
+                                                        style={{
+                                                            justifySelf: "flex-end"
+                                                        }}
+                                                    >{oderItem.orderItemPrice}</div>
+                                                </div>
+                                            )
+
+                                        })
+                                    }
+                                    {
+                                        this.state.total !== 0 ?
+
+                                            <div
+                                                style={{
+                                                    justifySelf: "flex-end",
+                                                    color: "red",
+                                                    fontWeight: "bold"
+                                                }}>
+
+                                                סהכ לתשלום: {this.state.total} שח
+                                <Link onClick={() => { this.props.getOrderList(this.state.orderList, this.state.total) }}
+                                                    to="/PayOptions"> - מעבר לתשלום
+                                <div className="goToBtn"></div>
+                                                </Link>
                                             </div>
-                                            <div>
-                                                {dish.price} שח
-                                        </div>
-                                        </div>
-                                    </div>
 
-                                )
-                            })
+                                            :
+                                            null
+                                    }
 
-                        }
-                    </div>
+                                </div>
+                            </div>
+
+                            :
+                            null
+                    }
+
+                    {/* food cards - mobile and desktop -------------------------------------------*/}
+
                     <p className="dishTypeHeader">ראשונות</p>
 
                     <div className="dishType">
@@ -153,22 +186,55 @@ class AddFoodPage extends Component {
                         {
                             this.state.sideDishes.map((dish, index) => {
                                 return (
-                                    <div className="foodCard"
-                                        onClick={(dishName) => { this.orderListHandler(dish.dishName, dish.price) }}
+                                    <div key={index} className="foodCard"
 
                                         style={{
-                                            backgroundImage: "url(" + dish.img + ")"
-                                        }}>
-                                        <div>
-                                            <div key={index}>{dish.dishName}</div>
-                                            <div class="tooltip">i<span class="tooltiptext">{dish.description}</span>
-                                            </div>
+                                            backgroundImage: "url(" + dish.img + ")",
 
-                                            <div>
-                                                {dish.price} שח
+                                        }}>
+
+                                        <div>
+                                            <div className="dishName">{dish.dishName}</div>
+                                            <div className="tooltip">פרטי מנה<span className="tooltiptext">{dish.description}</span>
+                                            </div>
                                         </div>
+                                        <div className="addBtnCard plus"
+                                            style={{ borderRadius: '50%', margin: 'auto', backgroundImage: "url('img/plus.png')" }}
+
+                                            onClick={(dishName) => { this.orderListHandler(dish.dishName, dish.price) }}>
+
                                         </div>
                                     </div>
+                                )
+                            })
+
+                        }
+                    </div>
+
+                    <p className="dishTypeHeader">עיקריות</p>
+
+                    <div className="dishType">
+                        {
+                            this.state.mainDishes.map((dish, index) => {
+                                return (
+                                    <div key={index} className="foodCard"
+
+                                        style={{
+                                            backgroundImage: "url(" + dish.img + ")",
+
+                                        }}>
+
+                                        <div>
+                                            <div className="dishName">{dish.dishName}</div>
+                                            <div className="tooltip">פרטי מנה<span className="tooltiptext">{dish.description}</span>
+                                            </div>
+                                        </div>
+                                        <div className="addBtnCard plus"
+                                            style={{ borderRadius: '50%', margin: 'auto', backgroundImage: "url('img/plus.png')" }}
+                                            onClick={(dishName) => { this.orderListHandler(dish.dishName, dish.price) }}>
+                                        </div>
+                                    </div>
+
                                 )
                             })
 
@@ -181,21 +247,21 @@ class AddFoodPage extends Component {
                         {
                             this.state.diserts.map((dish, index) => {
                                 return (
-                                    <div className="foodCard"
-                                        onClick={(dishName) => { this.orderListHandler(dish.dishName, dish.price) }}
+                                    <div key={index} className="foodCard"
 
                                         style={{
                                             backgroundImage: "url(" + dish.img + ")",
 
                                         }}>
-                                        <div>
-                                            <div key={index}>{dish.dishName}</div>
-                                            <div class="tooltip">i<span class="tooltiptext">{dish.description}</span>
-                                            </div>
 
-                                            <div>
-                                                {dish.price} שח
+                                        <div>
+                                            <div className="dishName">{dish.dishName}</div>
+                                            <div className="tooltip">פרטי מנה<span className="tooltiptext">{dish.description}</span>
+                                            </div>
                                         </div>
+                                        <div className="addBtnCard plus"
+                                            style={{ borderRadius: '50%', margin: 'auto', backgroundImage: "url('img/plus.png')" }}
+                                            onClick={(dishName) => { this.orderListHandler(dish.dishName, dish.price) }}>
                                         </div>
                                     </div>
                                 )
@@ -205,49 +271,35 @@ class AddFoodPage extends Component {
                     </div>
 
                 </div>
-                {
-                    this.state.showFullOrder ?
 
-                        <div id="orderSideWrapper" className="orderSideWrapper" >
-                            <p>סיכום הזמנה</p>
-                            <div className="orderItemCard"
-                                style={{
-                                    color: "grey",
-                                    border: "none",
-                                    fontWeight: "normal",
-                                    fontSize: "0.7rem"
-                                }}>
-                                <div>מנה</div>
-                                <div className="">הוסף</div>
-                                <div className="">החסר</div>
-                                <div>כמות</div>
-                                <div
-                                    style={{
-                                        justifySelf: "flex-end"
-                                    }}>מחיר</div>
-                            </div>
+                {/* calculation - desktop -------------------------------------------*/}
+                {
+                    this.state.total !== 0 ?
+
+                        <div id="orderSideWrapper" className="orderSideWrapper onlyDesktopElement" >
+
                             {
 
                                 this.state.orderList.map((oderItem, index) => {
                                     return (
-                                        <div key="index" className="orderItemCard">
-                                            <div>{oderItem.dishName}</div>
+                                        <div key={index} className="orderItemCard">
+                                            <div >{oderItem.dishName}</div>
 
 
 
-                                            <button onClick={() => { this.changeQtt(index, 1) }}
+                                            <div onClick={() => { this.changeQtt(index, 1) }}
                                                 style={{
                                                     backgroundImage: "url('img/plus.png')",
                                                 }}
-                                                className="plus"></button>
+                                                className="plus"></div>
 
 
 
-                                            <button onClick={() => { this.changeQtt(index, -1) }}
+                                            <div onClick={() => { this.changeQtt(index, -1) }}
                                                 style={{
                                                     backgroundImage: "url('img/minus.png')",
                                                 }}
-                                                className="minus"></button>
+                                                className="minus"></div>
 
 
 
@@ -263,7 +315,7 @@ class AddFoodPage extends Component {
                                 })
                             }
                             {
-                                this.state.total != 0 ?
+                                this.state.total !== 0 ?
 
                                     <div
                                         style={{
@@ -273,23 +325,24 @@ class AddFoodPage extends Component {
                                         }}>
 
                                         סהכ לתשלום: {this.state.total} שח
-                                <Link onClick={() => { this.props.getOrderList(this.state.orderList,this.state.total) }}
+                                <Link onClick={() => { this.props.getOrderList(this.state.orderList, this.state.total) }}
                                             to="/PayOptions"> - מעבר לתשלום
-                                <div class="goToBtn"></div>
+                                <div className="goToBtn"></div>
                                         </Link>
                                     </div>
 
                                     :
-                                    <div>
-
-                                    </div>
+                                    null
                             }
 
                         </div>
                         :
-                        <button onClick={() => { this.setState({ showFullOrder: !this.state.showFullOrder }) }} className="showFullOrderbtn">full order</button>
-
+                        null
                 }
+                {/* : */}
+                {/* <button onClick={() => { this.setState({ showFullOrder: !this.state.showFullOrder }) }} className="showFullOrderbtn">full order</button> */}
+
+                {/* } */}
 
             </div>
         )

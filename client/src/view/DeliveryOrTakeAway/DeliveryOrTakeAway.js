@@ -29,10 +29,9 @@ class DeliveryOrTakeAway extends Component {
                             {this.props.option1}
                         <div style={{
                         backgroundImage:"url('img/deliveryIcone.gif')",
-                        backgroundPosition:"center",
-                        backgroundSize:"contain",
-                        backgroundRepeat:"no-repeat",
-                        backgroundColor:"var(--firstColorOpacity)"
+                        backgroundPosition:"center center",
+                        backgroundSize:"cover",
+                        backgroundRepeat:"no-repeat"
                     }}></div>
                     </Link>
 
@@ -46,9 +45,8 @@ class DeliveryOrTakeAway extends Component {
                         <div style={{
                         backgroundImage:"url('img/TA.gif')",
                         backgroundPosition:"center",
-                        backgroundSize:"contain",
-                        backgroundRepeat:"no-repeat",
-                        backgroundColor:"var(--firstColorOpacity)"
+                        backgroundSize:"cover",
+                        backgroundRepeat:"no-repeat"
                         
                     }}></div>
                     </Link>

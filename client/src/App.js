@@ -9,10 +9,6 @@ import {
   Link
 } from "react-router-dom";
 
-//DB
-// import branches from './view/DB/branches';
-
-
 //components----------------------------------------------///////////////////
 import FullOrder from './view/FullOrder/FullOrder';
 
@@ -30,6 +26,7 @@ class App extends Component {
 
   constructor(props) {
     super(props)
+
 
     this.state = {
       selectedBranch: '',
@@ -49,34 +46,29 @@ class App extends Component {
       pageId: 1,
       orderTrack: '',
       statusMsg: '',
-      trackedOrder: ''
+      trackedOrder: '',
+      hostVar :'' // production
+      // hostVar: 'http://localhost:4000' //development
     }
-    //get branches from DB
 
-
-    //binds///////////
+    //handlers binds ///////////
     this.setOrderObj_Branch = this.setOrderObj_Branch.bind(this);
     this.setOrderObj_orderType = this.setOrderObj_orderType.bind(this);
     this.setOrderObj_clientDetails = this.setOrderObj_clientDetails.bind(this);
     this.setOrderObj_paymentType = this.setOrderObj_paymentType.bind(this);
     this.isManager = this.isManager.bind(this);
     this.getOrderList = this.getOrderList.bind(this);
-    this.setPageId = this.setPageId.bind(this);
     this.newOrderAccepted = this.newOrderAccepted.bind(this);
     this.done = this.done.bind(this);
     this.showOrderStatus = this.showOrderStatus.bind(this);
 
   }
 
-  setPageId(id) {
-    this.setState({ pageId: id })
-  }
+
   componentDidMount() {
 
-    // <Order state={this.state} />this.state.total
-    // <FullOrder fullOrder =  {this.state.orderList} />
-
-    fetch("http://localhost:4000/branches",
+    //get branches list from DB 
+    fetch(this.state.hostVar + "/branches",
       {
         method: 'POST',
         body: JSON.stringify({}),
@@ -86,7 +78,6 @@ class App extends Component {
       }
     ).then(result => {
       result.json().then(doc => {
-        // console.dir(doc);
         this.setState({ branches: doc.branches })
       })
     }
@@ -95,17 +86,16 @@ class App extends Component {
   }
 
   getOrderList(fullOrder, totalPrice) {
-
     this.setState({ orderList: fullOrder, total: totalPrice });
   }
 
-  //see deliveriesToDo list : only manager with pass
+  //see deliveriesToDo list : only manager with pass: 1234
   isManager(e) {
     e.preventDefault();
-
     if (e.target.elements.pass.value === '1234') {
 
-      fetch("http://localhost:4000/getOrderList",
+      //get todos list from DB 
+      fetch(this.state.hostVar + "/getOrderList",
         {
           method: 'POST',
           body: JSON.stringify({ tst: 'tst' }),
@@ -131,7 +121,9 @@ class App extends Component {
   showOrderStatus(e) {
     e.preventDefault();
     let orderNumToShow = e.target.elements.orderNum.value;
-    fetch("http://localhost:4000/orderStatusToShow",
+
+    //get specific order (searched by order number (client input)) from orders list -  DB 
+    fetch(this.state.hostVar + "/orderStatusToShow",
       {
         method: 'POST',
         body: JSON.stringify({ orderNumToShow }),
@@ -147,7 +139,6 @@ class App extends Component {
     }
 
     )
-
   }
 
   //the branch clicked by client in first page
@@ -182,9 +173,10 @@ class App extends Component {
     this.setState({ orderTime: date })
   }
 
-  //http://localhost:4000/newOrder
   newOrderAccepted(newOrderAccepted) {
-    fetch("http://localhost:4000/newOrder",
+
+    //push new order to DB
+    fetch(this.state.hostVar + "/newOrder",
       {
         method: 'POST',
         body: JSON.stringify(newOrderAccepted),
@@ -209,7 +201,9 @@ class App extends Component {
     console.log(orderNum)
 
     this.setState({ orderItems: updatedList });
-    fetch("http://localhost:4000/updateOrdersList",
+
+    //update status then get new status from DB
+    fetch(this.state.hostVar + "/updateOrdersList",
       {
         method: 'POST',
         body: JSON.stringify({ orderNum: orderNum }),
@@ -223,142 +217,140 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="AppWapper">
-
-
+        <div className="AppWrap">
           <Router>
             <header className="App-header">
-              <div>
-                <Link to="/"> <img src="/img/logo2.png" className="App-logo" alt="logo" /></Link>
-                <NavLinks pageId={this.state.pageId} setPageId={this.setPageId} items={
-                  [
-                    { id: 1, name: " בחירת סניף >", to: "/", className: "nav_item" },
-                    { id: 2, name: "  סוג הזמנה >", to: "/orderStep2", className: "nav_item" },
-                    { id: 3, name: " פרטים למשלוח >", to: "/deliveryForm", className: "nav_item" },
-                    { id: 4, name: "  בחר אוכל >", to: "/AddFoodPage", className: "nav_item" },
-                    { id: 5, name: " סוג תשלום > האוכל בדרך!", to: "/payOptions", className: "nav_item" }
-                  ]
-                } />
-
-              </div>
               <form onSubmit={(e) => { this.isManager(e) }}>
                 <div className="manager">
-                  <div>   מנהל: <input name="pass" type="text"></input></div>
-                  <div> <input name="submit" type="submit" value="כנס"></input></div>
+                  <div>   מנהל: <input name="pass" type="text" autocomplete="off"></input></div>
+                  <div > <input style={{
+
+                    height: "100%"
+                  }} name="submit" type="submit" value="כנס" ></input></div>
                 </div>
               </form>
+              <div>
+                <Link to="/"> <img src="/img/logo.png" className="App-logo" alt="logo" /></Link>
+              </div>
+
               <form onSubmit={(e) => { this.showOrderStatus(e) }}>
                 <div className="orderNum">
-                  <div>   הזן/י מספר הזמנה לבדיקת סטטוס הזמנתך: <input name="orderNum" type="text"></input></div>
-                  <div> <input name="submit" type="submit" value="אישור"></input></div>
+                  <div>   הזן/י מספר הזמנה לבדיקת סטטוס הזמנתך: <input style={{
+                    width: "400px",
+                    maxWidth: "80vw"
+                  }} name="orderNum" type="text" autocomplete="off"></input></div>
+                  <div> <input style={{
+                    color: "black",
+                    height: "100%"
+
+                  }} name="submit" type="submit" value="אישור"></input></div>
                 </div>
               </form>
 
             </header>
+
+            {/* show order status -------------------------------------- */}
             {
               this.state.statusMsg === 'new' ?
                 <div style={{
-                  fontWeight:'bolder',
-                  backgroundColor:'#FFF',
-                  padding:'20px'
+                  fontWeight: 'bolder',
+                  backgroundColor: '#FFF',
+                  padding: '20px'
                 }}>הזמנתך במטבח מתבשלת<p>תודה על הסבלנות</p></div> :
-                <div></div>}
+                null
+            }
             {
               this.state.statusMsg === 'done' ?
                 <p style={{
-                  fontWeight:'bolder',
-                  backgroundColor:'#FFF',
-                  padding:'20px'
+                  fontWeight: 'bolder',
+                  backgroundColor: '#FFF',
+                  padding: '20px'
                 }}>מוכן!! בדרך אליך במידה וביצעת הזמנת משלוח - אם ביצעת איסוף עצמי אז... בוא כבר!</p>
                 :
-                <div></div>
+                null
             }
+            {/* END show order status -------------------------------------- */}
+
+            {/* END orders todo - manager view status OR client view-------------------------------------- */}
             {this.state.isManager ?
               <OrdersToDo
                 // fullOrder={this.state.orderList}
                 ordersToDo={this.state.orderItems}
-                done={this.done} ></OrdersToDo>
+                done={this.done} msg="אין הזמנות" ></OrdersToDo>
 
               :
 
               <Switch>
+
+                {/* branches page ----------------------- */}
                 <Route exact path="/">
-                  {/* <div id="mapid"></div> */}
-                  <div className="gridWrap">
-                    <div className="grid">
-                      {
-                        this.state.branches.map((branch, index) => {
-                          return (
-                            <div key={index} to="/orderStep2"
-                              onClick={() => {
-                                this.setOrderObj_Branch(branch);
+                  <div className="branchesGrid">
+                    {
+                      this.state.branches.map((branch, index) => {
+                        return (
+                          <div key={index} to="/orderStep2"
+                            onClick={() => {
+                              this.setOrderObj_Branch(branch);
 
-                              }}>
+                            }}>
 
-                              <BranchDeleiveryCard key={branch.branchId} branchObj={branch}
-                                setOrderObj_Branch={this.setOrderObj_Branch}
-                                state={this.state}
-                              />
-                            </div>
-                          )
-                        })
-                      }
-                    </div>
+                            <BranchDeleiveryCard key={branch.branchId} branchObj={branch}
+                              setOrderObj_Branch={this.setOrderObj_Branch}
+                              state={this.state}
+                            />
+                          </div>
+                        )
+                      })
+                    }
                   </div>
                 </Route>
+                {/* END branches page ----------------------- */}
 
+                {/* order type page ----------------------- */}
                 <Route path="/orderStep2">
-
                   <DeliveryOrTakeAway
                     link1="/deliveryForm" link2="/deliveryForm"
                     option1="משלוח" option2="איסוף עצמי"
                     state={this.state} setOrderObj_orderType={this.setOrderObj_orderType} />
-
                 </Route>
 
+                {/* user info page - form --------------------------- */}
                 <Route path="/deliveryForm">
-
                   <DeliveryForm state={this.state}
                     setOrderObj_clientDetails={this.setOrderObj_clientDetails} />
-
                 </Route>
 
+                {/* store page - menu --------------------------- */}
                 <Route path="/AddFoodPage">
-
                   <AddFoodPage getOrderList={this.getOrderList} state={this.state} />
                 </Route>
 
+                {/* payment type page - -------------------------- */}
                 <Route path="/payOptions">
-
                   <CreditOrCash link1="/credit" link2="/cash"
                     option1="אשראי" option2="מזומן"
                     state={this.state}
                     setOrderObj_paymentType={this.setOrderObj_paymentType}
                   />
-
                 </Route>
 
-
+                {/* full details to approve by client - only then new order todos is created - ---------------- */}
                 <Route path="/summery">
                   <Order state={this.state} />
-
                   <FullOrder newOrderAccepted={this.newOrderAccepted} fullOrder={this.state.orderList} state={this.state} />
                 </Route>
+
+                {/* send client his order link --------------------------- */}
                 <Route path="/ordersToDo">
                   <p className="finalMsg">להלן מספר הזמנה לבדיקת סטטוס הזמנה :
                   <div>{this.state.orderTrack}</div>
                   </p>
-
                 </Route>
 
               </Switch>
             }
-
+            
           </Router>
-
-
-
-
         </div>
       </div >
     );

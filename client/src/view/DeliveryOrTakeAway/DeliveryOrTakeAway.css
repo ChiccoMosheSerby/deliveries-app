@@ -1,14 +1,15 @@
 .twoOptionsWrapper{
     display:flex;
-  
-    justify-content: space-around;
-    height: 70vh;
-    max-width: 550px;
+    
+    /* justify-content: space-around; */
+    height: calc(100vh - 250px);
     margin:auto;
     }
 
 .twoOptions{
     width: 70vw;
+    max-width: 550px;
+
     margin: auto;
     display:flex;
     flex-direction: row;
@@ -34,19 +35,18 @@
 }
 .twoOptions div:hover{
     background-color: var(--firstColorOpacity);
+    box-shadow: 1px 5px 5px rgb(0, 0, 0);
 }
 @media screen and (max-width: 800px) {
-    .twoOptionsWrapper{
-height: fit-content;    }
-.twoOptions{
-    flex-direction: column;
-    flex-wrap: wrap;
-}
-
+ 
     .twoOptions div{
         width: 35vw;
         height: 35vw;
         line-height: 35vw;
         font-size: 2rem;
     }
+}
+
+@media screen and (max-height: 180px) {
+     
 }

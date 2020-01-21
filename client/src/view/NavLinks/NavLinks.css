@@ -1,3 +1,11 @@
 .active_item{
 color:var(--secondColorOpacity);
+opacity: 0.4;
+}
+@media screen and (max-width: 800px) {
+    nav{
+        visibility: hidden;
+        width: 0;
+        height: 0;
+    }
 }

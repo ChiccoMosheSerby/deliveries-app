@@ -1,7 +1,7 @@
 const branches = require('../DB/branches.js');
 const express = require("express");
 const router = express.Router();
-const branchesCollection = require('../DB/branchesSchema')
+const branchesCollection = require('../DB/Schema').branchesSchema
 
 router.post('/', (req, res) => {
     // get all branches to DB

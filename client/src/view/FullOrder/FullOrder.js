@@ -31,11 +31,6 @@ class FullOrder extends Component {
             total: this.props.state.total
         }
         this.setState({ newOrderTodo: newOrder })
-        // <Order state={this.state} />this.state.total
-        // <FullOrder fullOrder =  {this.state.orderList} />
-        console.log('FullOrder---------')
-        console.log('newOrder---------')
-        console.log(newOrder)
 
     }
 
@@ -60,7 +55,12 @@ class FullOrder extends Component {
 
                 <div className="">
                     <Link to="/ordersToDo">
-                        <div className="goToOrderBtn"
+                        <div 
+                        style={{
+                            backgroundColor:'var(--firstColor)',
+                            color:'white'
+                        }}
+                        className="goToOrderBtn"
                             onClick={() => this.props.newOrderAccepted(this.state.newOrderTodo)}>אישור</div>
                     </Link>
                 </div>

@@ -1,21 +1,66 @@
 :root{
-  /* --firstColor : rgb(5, 165, 0);
-  --firstColorOpacity : #c2ebd4;
-  --secondColor : #32b7e9;
-  --secondColorOpacity : #32b8e94b; */
-  --firstColor : #2bb6af;
-  --firstColorOpacity : #c2cceb;
-  --secondColor : #eb7d5b;
-  --secondColorOpacity : #ffd8baa9;
-  /* --headerBkColor : #04050585; */
-  --headerBkColor :#0b75a7;
-  --headerBkColorBrighter : #4048634d;
+  --firstColor : #7a1616;
+  --firstColorOpacity : #7a16165d;
+  --secondColor : #26269ce8;
+  --secondColorOpacity : #26269c33;
+  --secondColorOpacity2 :#813f3fd2;
+  --thirdColor: #22039421;
+  --headerBkColor :#7a1616;
+  --headerBkColorBrighter : #e9837b;
+  --headerHeight:200px;
+  --logo-img : url("/img/logo.png");
+  --bodyBkColor :#ffffff7a;
+  --BG-img : url("/img/bg.png");
 }
 
-/* scrollbar--------------------------------------------- */
+/* logo animation -----------------*/
+.App-logo:hover,.logoInCard:hover {
+  -webkit-animation: spin 3.5s ;
+   animation: spin 3.5s ;
+}
+
+@-webkit-keyframes spin{
+  from {
+    -webkit-transform: rotateY(0deg);
+  }
+  to {
+    -webkit-transform: rotateY(-360deg);
+  }
+}
+
+@keyframes spin{
+  from {
+    -moz-transform: rotateY(0deg);
+    -ms-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+  }
+  
+  to {
+    -moz-transform: rotateY(-360deg);
+    -ms-transform: rotateY(-360deg);
+    transform: rotateY(-360deg);
+  }
+}
+ /* end animation --------------------- */
+
+/* preventing safari default style------------- */
+input, textarea,div {
+  -webkit-user-select: text;
+  -khtml-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+*{
+  -webkit-appearance: none;
+}
+
+
+/* scrollbar style---------------------------------------- */
 /* width */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 5px;
 }
 
 /* Track */
@@ -26,7 +71,7 @@
  
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: var(--firstColorOpacity); 
+  background: var(--secondColorOpacity); 
   border-radius: 10px;
 }
 
@@ -40,16 +85,11 @@ a{
   text-decoration: none;
   color:var(--firstColor);
 }
-.AppWapper {
+
+.AppWrap {
   text-align: center;
   direction:rtl;
-  background-color: white;
-  background-color: #e8f9ff;
-
-  background-image: url("/img/veganBG4.png");
-  background-position: fixed ;
-  background-size: 100%;
-  background-repeat: repeat;
+  background-color: var(--bodyBkColor);
   min-height: 100vh;
 }
 
@@ -61,31 +101,28 @@ a{
 }
 
 .App-header {
-  /* background-color: var(--headerBkColor); */
-  background-color: #bdd6de;
-  background-image: url(/img/header.gif);
-  background-position: center;
-  background-size:100vw 100%;
-  background-repeat: no-repeat;
-  display: grid;
-  grid-template-rows: 1fr ;
-
+  background-color:var(--headerBkColor);
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content:center;
+  justify-content:space-around;
   /* font-size: calc(10px + 2vmin); */
   color: white;
-  height: 250px;
+  height: var(--headerHeight);
+
 }
 
 .manager {
-  position: absolute;
   font-size: 0.8rem;
-  top:10px;
-  left:10px;
   display:flex;
   flex-direction: row;
-  justify-content: center;
-  align-content: center;
+  justify-content: end;
+  align-content:center;
+  /* position: absolute;
+  left:10px;
+  top:5px; */
+  opacity:0.5 ;
+  margin-top:2px;
 }
 
 .manager input[type=text]{
@@ -96,36 +133,35 @@ a{
   text-align: center;
   background-color: var(--headerBkColorBrighter);
   border:var(--secondColorOpacity) solid 1px;
-  color: var(--firstColor);
+  color:white;
   outline: none;
   }
 
   .orderNum{
-    position: absolute;
     font-size: 0.8rem;
-    top:10px;
-    right:10px;
+    margin: auto;
+    margin-bottom: 4px;
+    width: 75%;
     display:flex;
     flex-direction: row;
-    justify-content: center;
-    align-content: center;
+    justify-content: space-around;
+    background-color: var(--secondColorOpacity);
+    border-radius: 15px;
+    padding:5px;
   }
 
   .orderNum input[type=text]{
     height:25px ;
-    min-width: 50px;
+    width: 30px;
     line-height: 25px;
-    border-radius: 10px;
+    border-radius: 15px;
     text-align: center;
-    background-color: var(--headerBkColorBrighter);
-    border:var(--secondColorOpacity) solid 1px;
-    color: var(--firstColor);
+    background-color: white;
+    border:var(--secondColor) solid 1px;
+    color: white;
     outline: none;
   }
-  .nav_item{
-    padding: 10px;
-    color:var(--firstColorOpacity);
-}
+
   
 .manager input[type=submit],.orderNum input[type=submit]{
   height:25px ;
@@ -145,16 +181,16 @@ a{
     color:white;
   }
 
-.grid{
+.branchesGrid{
   display: grid;
-  grid-template-columns: 1fr 1fr ;
+  grid-template-columns: 1fr 1fr;
   width:50vw;
-  min-height: calc(100vh - 500px);
-  grid-gap:5px;
+  height: calc(100vh - var(--headerHeight));
   margin: auto;
-  margin-top:50px;
   align-items: center;
 }
+
+/* select text by click : order number */
 .finalMsg div{
     -webkit-user-select: all;  /* Chrome all / Safari all */
     -moz-user-select: all;     /* Firefox all */
@@ -163,34 +199,56 @@ a{
     font-weight: bolder;
     color:var(--firstColor)
 }
-#mapid{
-  height: 300px;
-  width: 300px;
+
+.tooltip {
+  position: relative;
+  /* color: var(--firstColor); */
+  border:none;
 }
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 150px;
+  height: fit-content;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 5px;
+  border:none;
+
+  /* Position the tooltip */
+  position: absolute;
+  top:0;
+  right:5px;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  border:none;
+}
+
 @media screen and (max-width: 800px) {
-  .grid{
-    display: grid;
-    grid-template-columns: 1fr 1fr ;
+  .orderNum{
+    width: 98%;
+  }
+  .branchesGrid{
     width: 100vw;
-    height: fit-content;
-    margin-top: none;
-    align-items: flex-start;
-      }
-
-      .AppWapper {
- 
+    align-items: center; 
+   }
+  .AppWapper {
         background-size: cover;
-        
-      
       }
-
-
+      
   .App-header {
     background-color: var(--headerBkColor);
-    display: flex;
-    flex-direction: row;
-    align-items: flex-end;
-    justify-content:flex-start;
     font-weight: 0.7rem;
   }
+  .onlyDesktop{
+visibility: hidden;
+height: 0;
+width: 0;
+  
+  }
+
 }

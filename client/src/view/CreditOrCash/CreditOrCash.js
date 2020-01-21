@@ -29,9 +29,11 @@ class CreditOrCash extends Component {
                         <div style={{
                             backgroundImage: "url('img/credit.gif')",
                             backgroundPosition: "center",
-                            backgroundSize: "contain",
+                            backgroundSize: "cover",
                             backgroundRepeat: "no-repeat",
                             backgroundColor:"#ffc500",
+                            webkitTransform: 'scaleX(-1)',
+                            transform: 'scaleX(-1)'
 
                         }}></div>
                     </Link>
@@ -44,7 +46,7 @@ class CreditOrCash extends Component {
                         <div style={{
                             backgroundImage: "url('img/cash.gif')",
                             backgroundPosition: "center",
-                            backgroundSize: "contain",
+                            backgroundSize: "cover",
                             backgroundRepeat: "no-repeat",
                             backgroundColor:"#771c7f",
 

@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const orderTodoCollection = require('../DB/ordersSchema');
+const orderTodoCollection = require('../DB/Schema').orderTodoSchema
 
 router.post('/', (req, res) => {
-    orderTodoCollection.find((err, list) => {
+    orderTodoCollection.find({status:"new"},(err, list) => {
         console.log('.....................................')
     console.log(list)
         if (err) throw err;

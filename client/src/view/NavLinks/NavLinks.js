@@ -22,7 +22,10 @@ class NavLinks extends Component {
                 {
                     this.props.items.map((link, index) => {
                         return (
-                            <Link onClick={() => { this.props.setPageId(link.id); this.handleClick(link.id) }}
+                            <Link style={{
+                            opacity:"0.1"
+                            }}
+                            onClick={() => { this.props.setPageId(link.id); this.handleClick(link.id) }}
                                 key={link.id} to={link.to}
                                 className={
                                     link.className +

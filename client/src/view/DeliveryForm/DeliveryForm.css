@@ -1,11 +1,32 @@
+*{
+    resize:none;
+}
+input, textarea {
+    -webkit-user-select: text;
+    -khtml-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+    resize:none;
+
+  }
+  @media screen and (-webkit-min-device-pixel-ratio:0) { 
+    select,
+    textarea,
+    input {
+      font-size: 16px;
+    }
+  }
 .deliveryForm{
     display:grid;
     grid-template-rows:1fr 1fr 1fr;
     width: 600px;
     margin:auto;
-    margin-top:20px;
+    margin-top:5px;
     text-align: center;
-    /* height: calc(100vh - 200px); */
+    height:fit-content;
+    resize:none;
+
 }
 
 .oneRow{
@@ -16,11 +37,10 @@
     align-content: center;
 }
 
-::placeholder{
-    text-align: center;
+::placeholder, ::-webkit-input-placeholder,::-webkit-input-placeholder{
+    text-align: center ;
     color:var(--secondColor);
     background-color: rgba(255, 255, 255, 0.877);
-    line-height: 100px;
 }
 
 .oneRow input, .city{
@@ -32,6 +52,8 @@
     outline: none;
     border:var(--secondColorOpacity) 1px solid;
     min-width: 150px;
+    resize:none;
+
 }
 .city span{
     color:var(--firstColor);
@@ -40,13 +62,18 @@ font-weight: bold;}
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
   margin: 0;
+  resize:none;
+
 }
+
+
 
 /* Firefox */
 input[type=number] {
   -moz-appearance:textfield;
+  resize:none;
+
 }
 
 
@@ -58,10 +85,11 @@ input[type=number] {
     border-radius: 50%;
     width: 80px;
     height: 80px;
-    line-height: 150px;
     margin:auto;
     margin-bottom:5px;
     background-color: white;
+    resize:none;
+
 
     /* text-shadow:
     -1px -1px 0 rgb(255, 255, 255),  
@@ -87,10 +115,15 @@ input[type=number] {
 @media screen and (max-width: 800px) {
     .deliveryForm{
         width: 100vw;
+        display:flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
     .oneRow{
         justify-content: space-around;
+        align-content: flex-start;
     }
 
     .oneRow input, .city{

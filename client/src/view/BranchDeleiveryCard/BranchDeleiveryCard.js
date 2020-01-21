@@ -11,13 +11,11 @@ import {
 
 class BranchDeleiveryCard extends Component {
 
-    constructor(props) {
-        super(props);
-    }
+
     render() {
         return (
             <Link to="/orderStep2" className="BranchDeleiveryCard">
-                <div style={{
+                <div className="logoInCard" style={{
                     backgroundImage: "url('img/logo.png')",
                     backgroundPosition: "center",
                     backgroundSize: "cover",
@@ -27,7 +25,7 @@ class BranchDeleiveryCard extends Component {
                     height: "40px",
                     borderRadius: "50%",
                     margin: "auto",
-                    border: "solid 1px Var(--firstColorOpacity)"
+                    border: "solid 1px Var(--firstColor)"
                 }}></div>
                 הזמנות מסניף
                 <OrderBtn
@@ -37,11 +35,7 @@ class BranchDeleiveryCard extends Component {
                     state={this.props.state}
                 />
                 <div className="links">
-                    {/* <Link style={{
-                            backgroundImage: "url('img/call.jpg')"
-
-                    }}to="tel://+972585312565" class="call"></Link> */}
-                    <div className="tooltip">i
+                    <div className="tooltip onlyDesktop">פרטי הסניף
                 <span className="tooltiptext">
                             <Branch
                                 branchPhoneNum={this.props.branchObj.branchPhoneNum}

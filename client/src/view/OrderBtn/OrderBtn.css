@@ -1,7 +1,7 @@
 
 .goToOrderBtn{
-    border: var(--firstColorOpacity) 1px solid;
-    color: var(--secondColor);
+    /* border: var(--firstColorOpacity) 1px solid; */
+    /* color: white; */
     padding:10px;
     border-radius: 10px;
     font-weight: bold;
@@ -11,6 +11,6 @@
     opacity: 0.7;
 }
 .goToOrderBtn:hover{
-    /* background-color:var(--firstColorOpacity); */
+    background-color:var(--firstColorOpacity);
     opacity:1;
 }

@@ -27,7 +27,7 @@ class DeliveryForm extends Component {
         }
         else {
             return (
-                <div>
+                <div className = "formWrap">
                     {
                         this.props.state.DeleiveryOrTakeAway === 'משלוח' ?
 
