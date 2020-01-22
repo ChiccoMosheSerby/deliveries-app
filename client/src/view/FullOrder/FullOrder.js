@@ -54,7 +54,7 @@ class FullOrder extends Component {
                 }
 
                 <div className="">
-                    <Link to="/ordersToDo">
+                    <Link to="/trackOrder">
                         <div 
                         style={{
                             backgroundColor:'var(--firstColor)',

@@ -6,13 +6,12 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
+  useParams
 } from "react-router-dom";
 
 //components----------------------------------------------///////////////////
 import FullOrder from './view/FullOrder/FullOrder';
-
-import NavLinks from './view/NavLinks/NavLinks';
 import CreditOrCash from './view/CreditOrCash/CreditOrCash';
 import DeliveryOrTakeAway from './view/DeliveryOrTakeAway/DeliveryOrTakeAway';
 import BranchDeleiveryCard from './view/BranchDeleiveryCard/BranchDeleiveryCard';
@@ -20,6 +19,8 @@ import DeliveryForm from './view/DeliveryForm/DeliveryForm';
 import AddFoodPage from './view/AddFoodPage/AddFoodPage';
 import OrdersToDo from './view/OrdersToDo/OrdersToDo';
 import Order from './view/Order/Order';
+// import TrackingOrder from './view/TrackingOrder/TrackingOrder';
+
 //end - components----------------------------------------------////////////
 
 class App extends Component {
@@ -60,7 +61,7 @@ class App extends Component {
     this.getOrderList = this.getOrderList.bind(this);
     this.newOrderAccepted = this.newOrderAccepted.bind(this);
     this.done = this.done.bind(this);
-    this.showOrderStatus = this.showOrderStatus.bind(this);
+    this.orderStatusToShow = this.orderStatusToShow.bind(this);
 
   }
 
@@ -118,7 +119,7 @@ class App extends Component {
   }
 
   //show order status
-  showOrderStatus(e) {
+  orderStatusToShow(e) {
     e.preventDefault();
     let orderNumToShow = e.target.elements.orderNum.value;
 
@@ -174,7 +175,7 @@ class App extends Component {
   }
 
   newOrderAccepted(newOrderAccepted) {
-
+    this.setState({ redirect: true })
     //push new order to DB
     fetch(this.state.hostVar + "/newOrder",
       {
@@ -215,6 +216,7 @@ class App extends Component {
   }
 
   render() {
+
     return (
       <div className="App">
         <div className="AppWrap">
@@ -233,7 +235,7 @@ class App extends Component {
                 <Link to="/"> <img src="/img/logo.png" className="App-logo" alt="logo" /></Link>
               </div>
 
-              <form onSubmit={(e) => { this.showOrderStatus(e) }}>
+              <form onSubmit={(e) => { this.orderStatusToShow(e) }}>
                 <div className="orderNum">
                   <div>   הזן/י מספר הזמנה לבדיקת סטטוס הזמנתך: <input style={{
                     width: "400px",
@@ -282,7 +284,7 @@ class App extends Component {
 
               <Switch>
 
-                {/* branches page ----------------------- */}
+                {/* branches page ----------------------------------------------------------------------- */}
                 <Route exact path="/">
                   <div className="branchesGrid">
                     {
@@ -304,7 +306,7 @@ class App extends Component {
                     }
                   </div>
                 </Route>
-                {/* END branches page ----------------------- */}
+                {/* END branches page ----------------------------------------------------------- */}
 
                 {/* order type page ----------------------- */}
                 <Route path="/orderStep2">
@@ -341,20 +343,113 @@ class App extends Component {
                 </Route>
 
                 {/* send client his order link --------------------------- */}
-                <Route path="/ordersToDo">
+                <Route path="/trackOrder">
                   <p className="finalMsg">להלן מספר הזמנה לבדיקת סטטוס הזמנה :
-                  <div>{this.state.orderTrack}</div>
+                      <div>{this.state.orderTrack}</div>
+                      <Link to={'/trackOrder/' + this.state.orderTrack}>click the link</Link>
                   </p>
+                  {/* <TrackingOrder newOrderAccepted={this.state.orderTrack}></TrackingOrder> */}
+
                 </Route>
+                <Route path="/trackOrder/:orderNum" children={<TrackingOrder />} />
 
               </Switch>
             }
-            
+
           </Router>
         </div>
       </div >
     );
   }
+
 }
 
 export default App;
+
+class TrackingOrder extends Component {
+
+  constructor(props) {
+      super(props);
+
+      this.state = {
+          msg: ''
+      }
+  }
+
+  componentDidMount() {
+      let newOrderAccepted = this.props.ordernumber;
+      //get specific order (searched by order number (client input)) from orders list -  DB 
+      fetch(this.state.hostVar + "/orderStatusToShow",
+          {
+              method: 'POST',
+              body: JSON.stringify({ newOrderAccepted }),
+              headers: {
+                  'Content-Type': 'application/json'
+              }
+          }
+      ).then(result => {
+          result.json().then(res => {
+
+              this.setState({ msg: res.msg})
+          })
+      }
+
+      )
+  }
+
+  render() {
+        let { orderNum } = useParams();
+    this.setState({ orderNum: orderNum })
+      return (
+          <div className="trackPage">
+             {orderNum}
+          </div>
+      )
+  }
+}
+
+// class Child extends Component {
+
+//   constructor(props) {
+//     super(props)
+//     // We can use the `useParams` hook here to access
+//     // the dynamic pieces of the URL.
+
+
+//     this.state = {
+//       orderNum: '',
+//       statusMsg: ''
+//     }
+//   }
+//   componentDidMount() {
+//     let orderNumToShow = this.state.orderNum;
+//     //get status for specific order from DB 
+//     fetch(this.state.hostVar + "/orderStatusToShow",
+//       {
+//         method: 'POST',
+//         body: JSON.stringify({ orderNumToShow }),
+//         headers: {
+//           'Content-Type': 'application/json'
+//         }
+//       }
+//     ).then(result => {
+//       result.json().then(res => {
+
+//         this.setState({ statusMsg: res.msg })
+//       })
+//     }
+
+//     )
+//   }
+//   render() {
+//     let { orderNum } = useParams();
+//     this.setState({ orderNum: orderNum })
+
+//     return (
+//       <div>
+//         <p>{this.state.statusMsg}</p>
+//         <h3>orderNum: {orderNum}</h3>
+//       </div>
+//     )
+//   }
+// }
