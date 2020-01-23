@@ -346,7 +346,7 @@ class App extends Component {
                 <Route path="/trackOrder">
                   <p className="finalMsg">להלן מספר הזמנה לבדיקת סטטוס הזמנה :
                       <div>{this.state.orderTrack}</div>
-                      <Link to={'/trackOrder/' + this.state.orderTrack}>click the link</Link>
+                    <Link to={'/trackOrder/' + this.state.orderTrack}>click the link</Link>
                   </p>
                   {/* <TrackingOrder newOrderAccepted={this.state.orderTrack}></TrackingOrder> */}
 
@@ -358,6 +358,29 @@ class App extends Component {
 
           </Router>
         </div>
+        <footer>
+       
+            <div style={{
+              background: '#3B5998',
+              color: 'white'
+
+            }} className="footerItem fa fa-facebook"></div>
+            <div
+              style={{
+                background: 'var(--firstColor)',
+                color: 'white'
+
+              }}
+              className="footerItem fa fa-youtube"></div>
+            <div
+              style={{
+                background: 'black',
+                color: 'white'  
+
+              }}
+              className="footerItem fa fa-instagram"></div>
+      
+        </footer>
       </div >
     );
   }
@@ -369,42 +392,42 @@ export default App;
 class TrackingOrder extends Component {
 
   constructor(props) {
-      super(props);
+    super(props);
 
-      this.state = {
-          msg: ''
-      }
+    this.state = {
+      msg: ''
+    }
   }
 
   componentDidMount() {
-      let newOrderAccepted = this.props.ordernumber;
-      //get specific order (searched by order number (client input)) from orders list -  DB 
-      fetch(this.state.hostVar + "/orderStatusToShow",
-          {
-              method: 'POST',
-              body: JSON.stringify({ newOrderAccepted }),
-              headers: {
-                  'Content-Type': 'application/json'
-              }
-          }
-      ).then(result => {
-          result.json().then(res => {
-
-              this.setState({ msg: res.msg})
-          })
+    let newOrderAccepted = this.props.ordernumber;
+    //get specific order (searched by order number (client input)) from orders list -  DB 
+    fetch(this.state.hostVar + "/orderStatusToShow",
+      {
+        method: 'POST',
+        body: JSON.stringify({ newOrderAccepted }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
       }
+    ).then(result => {
+      result.json().then(res => {
 
-      )
+        this.setState({ msg: res.msg })
+      })
+    }
+
+    )
   }
 
   render() {
-        let { orderNum } = useParams();
+    let { orderNum } = useParams();
     this.setState({ orderNum: orderNum })
-      return (
-          <div className="trackPage">
-             {orderNum}
-          </div>
-      )
+    return (
+      <div className="trackPage">
+        {orderNum}
+      </div>
+    )
   }
 }
 
