@@ -2,15 +2,6 @@ const express = require("express");
 const router = express.Router();
 const orderTodoCollection = require('../DB/Schema').orderTodoSchema
 
-
-let accountSid = 'ACf863e7c1ec621cd0c1bc2a978d51a6f9'; // Your Account SID from www.twilio.com/console
-let authToken = '26b3bece8b3b17ca4d714eb2cd97b149';   // Your Auth Token from www.twilio.com/console
-
-let twilio = require('twilio');
-let client = new twilio(accountSid, authToken);
-
-
-
 function uniqid() {
     return Math.random().toString(16).slice(15) + (new Date()).getTime() + Math.random().toString(16).slice(15);
 }
@@ -29,14 +20,7 @@ router.post('/', (req, res) => {
         newOrder.orderNum = uniqid();
         newOrder.status = 'new';
 
-        //WhatsApp
-        client.messages.create({
-            from: 'whatsapp:+14155238886',
-            body: 'מספר הזמנתך : ' + newOrder.orderNum + ' פרטי הזמנה כאן : https://deliveries-app-heroku.herokuapp.com',
-            to: 'whatsapp:+972547738302'
-            // + newOrder.clientPhoneNumber
-            // to: 'whatsapp:+972547738302'
-        }).then(message => console.log(message.sid));
+
 
 
         //Add order to DB
