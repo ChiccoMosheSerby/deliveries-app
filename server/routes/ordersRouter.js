@@ -71,18 +71,16 @@ router.post('/', (req, res) => {
         });
         let mailOptions = {
             from: 'some@tst.com',
-            // to: 'chiccomoshe@gmail.com',
             to: newOrder.clientEmail,
             subject: 'we recived your order from delivery app DEMO - ' + newOrder.selectedBranch,
             text: 'your order number for tracking: ' + newOrder.orderNum
         };
         let mailOptions2 = {
             from: 'some@tst.com',
-            to: 'chiccomosheserby@gmail.com',
-            // to:newOrder.clientEmail,
+            to: 'chiccomoshe@gmail.com',
             subject: 'new order - ' + newOrder.selectedBranch,
-            text: 'order number: ' + newOrder.orderNum + '/n'
-                + 'name : ' + newOrder.clientName + '/n'
+            text: 'order number: ' + newOrder.orderNum + '\n'
+                + 'name : ' + newOrder.clientName + '\n'
                 + 'phone number: ' + newOrder.clientPhoneNumber
         };
 
