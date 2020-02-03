@@ -379,7 +379,10 @@ class App extends Component {
 
               }}
               className="footerItem fa fa-instagram"></div>
-      
+                  <div style={{
+                    color:'black',fontSize: '.7rem', alignSelf:'center',gridColumn:'1/end'
+                  }}>&#9400; Chicco Moshe Serby</div>
+
         </footer>
       </div >
     );
@@ -430,49 +433,3 @@ class TrackingOrder extends Component {
     )
   }
 }
-
-// class Child extends Component {
-
-//   constructor(props) {
-//     super(props)
-//     // We can use the `useParams` hook here to access
-//     // the dynamic pieces of the URL.
-
-
-//     this.state = {
-//       orderNum: '',
-//       statusMsg: ''
-//     }
-//   }
-//   componentDidMount() {
-//     let orderNumToShow = this.state.orderNum;
-//     //get status for specific order from DB 
-//     fetch(this.state.hostVar + "/orderStatusToShow",
-//       {
-//         method: 'POST',
-//         body: JSON.stringify({ orderNumToShow }),
-//         headers: {
-//           'Content-Type': 'application/json'
-//         }
-//       }
-//     ).then(result => {
-//       result.json().then(res => {
-
-//         this.setState({ statusMsg: res.msg })
-//       })
-//     }
-
-//     )
-//   }
-//   render() {
-//     let { orderNum } = useParams();
-//     this.setState({ orderNum: orderNum })
-
-//     return (
-//       <div>
-//         <p>{this.state.statusMsg}</p>
-//         <h3>orderNum: {orderNum}</h3>
-//       </div>
-//     )
-//   }
-// }

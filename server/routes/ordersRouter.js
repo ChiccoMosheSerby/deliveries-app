@@ -65,20 +65,20 @@ router.post('/', (req, res) => {
             host: "smtp.gmail.com",
             secure: true,
             auth: {
-                user: 'chiccomoshe@gmail.com',
-                pass: 'mhmbstqolssvnrtm'
+                user: 'chiccomosheserby@gmail.com',
+                pass: 'chiccochicco123'
             }
         });
         let mailOptions = {
             from: 'some@tst.com',
             // to: 'chiccomoshe@gmail.com',
             to: newOrder.clientEmail,
-            subject: 'we recived your order from vegan food - ' + newOrder.selectedBranch,
+            subject: 'we recived your order from delivery app DEMO - ' + newOrder.selectedBranch,
             text: 'your order number for tracking: ' + newOrder.orderNum
         };
         let mailOptions2 = {
             from: 'some@tst.com',
-            to: 'chiccomoshe@gmail.com',
+            to: 'chiccomosheserby@gmail.com',
             // to:newOrder.clientEmail,
             subject: 'new order - ' + newOrder.selectedBranch,
             text: 'order number: ' + newOrder.orderNum + '/n'
