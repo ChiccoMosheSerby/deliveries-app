@@ -59,7 +59,7 @@ router.post('/', (req, res) => {
             subject: 'we recived your order from delivery app DEMO - ' + newOrder.selectedBranch,
             text: 'your order number for tracking: ' + newOrder.orderNum +
              '\n' +
-            + 'name : ' + newOrder.clientName + '\n'
+             'name : ' + newOrder.clientName + '\n'
             + 'phone number: ' + newOrder.clientPhoneNumber
         };
         let mailOptions2 = {
