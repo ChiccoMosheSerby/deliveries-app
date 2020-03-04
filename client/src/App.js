@@ -224,7 +224,7 @@ class App extends Component {
             <header className="App-header">
               <form onSubmit={(e) => { this.isManager(e) }}>
                 <div className="manager">
-                  <div>   מנהל: <input name="pass" type="text" autocomplete="off"></input></div>
+                  <div> מנהל: <input name="pass" type="text" placeholder = "סיסמא 1234" autocomplete="off"></input></div>
                   <div > <input style={{
 
                     height: "100%"

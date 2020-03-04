@@ -5,9 +5,7 @@ const router = express.Router();
 router.post('/', (req, res) => {
 
     res.send({
-        mainDishes: menu.mainDishes,
-        sideDishes: menu.sideDishes,
-        diserts: menu.diserts
+   
     })
 })
 
