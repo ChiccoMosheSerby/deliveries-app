@@ -26,7 +26,7 @@ class AddFoodPage extends Component {
 
     componentDidMount() {
 
-        fetch(this.props.state.hostVar + "/menu",
+        fetch(this.props.hostVar+ "/menu",
             {
                 method: 'POST',
                 body: JSON.stringify({}),
@@ -37,7 +37,7 @@ class AddFoodPage extends Component {
         ).then(result => {
             console.log(result)
             result.json().then(doc => {
-
+                console.log(doc)
                 this.setState({
                     mainDishes: doc.mainDishes,
                     sideDishes: doc.sideDishes,

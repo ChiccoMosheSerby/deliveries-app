@@ -8,20 +8,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 app.use(bodyParser.json());
 
-// let accountSid = 'ACf863e7c1ec621cd0c1bc2a978d51a6f9'; // Your Account SID from www.twilio.com/console
-// let authToken = '26b3bece8b3b17ca4d714eb2cd97b149';   // Your Auth Token from www.twilio.com/console
-
-// let twilio = require('twilio');
-// let client = new twilio(accountSid, authToken);
-
-// client.messages.create({
-//     body: 'Hello new Order',
-//     to: '972585313233',  // Text this number
-//     from: '+17176392486' // From a valid Twilio number
-// })
-// .then((message) => console.log(message.sid));
-
-
 //ROUTERS/////////////////////////////////////////////////////////////////////////////
 
 //branches route---------------

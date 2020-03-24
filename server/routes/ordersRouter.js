@@ -54,7 +54,7 @@ router.post('/', (req, res) => {
             }
         });
         let mailOptions = {
-            from: 'some@tst.com',
+            from: 'chiccomosheserby@gmail.com',
             to: newOrder.clientEmail,
             subject: 'we recived your order from delivery app DEMO - ' + newOrder.selectedBranch,
             text: 'your order number for tracking: ' + newOrder.orderNum +
@@ -63,7 +63,7 @@ router.post('/', (req, res) => {
             + 'phone number: ' + newOrder.clientPhoneNumber
         };
         let mailOptions2 = {
-            from: 'some@tst.com',
+            from: 'chiccomosheserby@gmail.com',
             to: 'chiccomoshe@gmail.com',
             subject: 'new order - ' + newOrder.selectedBranch,
             text: 'order number: ' + newOrder.orderNum + '\n'

@@ -91,13 +91,19 @@ a{
   direction:rtl;
   background-color: var(--bodyBkColor);
   min-height: 100vh;
+
+  
 }
 
 .App-logo {
   height: 100px;
-  border-radius:20px;
+  border-radius:50%;
   grid-column: 1;
   grid-row: 1/end;
+
+  -webkit-box-shadow: 0px 15px 18px -6px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 15px 18px -6px rgba(0,0,0,0.75);
+  box-shadow: 0px 15px 18px -6px rgba(0,0,0,0.75);
 }
 
 .App-header {
@@ -110,6 +116,9 @@ a{
   color: white;
   height: var(--headerHeight);
 
+  -webkit-box-shadow: 0px 15px 18px -6px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 15px 18px -6px rgba(0,0,0,0.75);
+box-shadow: 0px 15px 18px -6px rgba(0,0,0,0.75);
 }
 
 .manager {
@@ -259,6 +268,21 @@ footer{
 .footerItem:hover{
 cursor: pointer;
 opacity: 1;
+
+}
+
+html,body{
+background-image: var(--BG-img);
+background-position: cover;
+background-repeat:no-repeat;
+background-size: 100% auto;
+
+
+  /* background: rgb(122,22,22);
+background: -moz-linear-gradient(180deg, rgba(122,22,22,1) 7%, rgba(255,255,255,1) 59%);
+background: -webkit-linear-gradient(180deg, rgba(122,22,22,1) 7%, rgba(255,255,255,1) 59%);
+background: linear-gradient(180deg, rgba(122,22,22,1) 7%, rgba(255,255,255,1) 59%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#7a1616",endColorstr="#ffffff",GradientType=1); */
 
 }
 @media screen and (max-width: 800px) {

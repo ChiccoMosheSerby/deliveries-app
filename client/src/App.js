@@ -324,7 +324,7 @@ class App extends Component {
 
                 {/* store page - menu --------------------------- */}
                 <Route path="/AddFoodPage">
-                  <AddFoodPage getOrderList={this.getOrderList} state={this.state} />
+                  <AddFoodPage getOrderList={this.getOrderList} state={this.state}  hostVar={this.state.hostVar}/>
                 </Route>
 
                 {/* payment type page - -------------------------- */}

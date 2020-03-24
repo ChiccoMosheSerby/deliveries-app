@@ -6,9 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  background-image: var(--BG-img);
-  background-position: fixed ;
-  background-size: 100%;
+
 }
 
 

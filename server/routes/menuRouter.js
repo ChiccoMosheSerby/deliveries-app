@@ -4,9 +4,7 @@ const router = express.Router();
 
 router.post('/', (req, res) => {
 
-    res.send({
-   
-    })
+    res.send(menu)
 })
 
 module.exports = router;
