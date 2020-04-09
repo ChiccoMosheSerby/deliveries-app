@@ -9,7 +9,13 @@ app.use(cors());
 app.use(bodyParser.json());
 
 //ROUTERS/////////////////////////////////////////////////////////////////////////////
-
+app.get('/*', function(req, res) {
+    res.sendFile(path.join(__dirname, '/index.html'), function(err) {
+      if (err) {
+        res.status(500).send(err)
+      }
+    })
+  })
 //branches route---------------
 const branchesRouter = require('./routes/branchesRouter');
 app.use("/branches", branchesRouter);
