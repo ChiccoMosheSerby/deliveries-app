@@ -42,53 +42,53 @@ router.post('/', (req, res) => {
         //---------------  email  ------------------//
         ////npm install nodemailer
         //'generate pass from here: https://myaccount.google.com/apppasswords'
-        const nodemailer = require('nodemailer');
-        var transporter = nodemailer.createTransport({
-            service: 'gmail',
-            type: "SMTP",
-            host: "smtp.gmail.com",
-            secure: true,
-            auth: {
-                user: 'chiccomosheserby@gmail.com',
-                pass: 'chiccomosheserby123'
-            }
-        });
-        let mailOptions = {
-            from: 'chiccomosheserby@gmail.com',
-            to: newOrder.clientEmail,
-            subject: 'we recived your order from delivery app DEMO - ' + newOrder.selectedBranch,
-            text: 'your order number for tracking: ' + newOrder.orderNum +
-             '\n' +
-             'name : ' + newOrder.clientName + '\n'
-            + 'phone number: ' + newOrder.clientPhoneNumber
-        };
-        let mailOptions2 = {
-            from: 'chiccomosheserby@gmail.com',
-            to: 'chiccomoshe@gmail.com',
-            subject: 'new order - ' + newOrder.selectedBranch,
-            text: 'order number: ' + newOrder.orderNum + '\n'
-                + 'name : ' + newOrder.clientName + '\n'
-                + 'phone number: ' + newOrder.clientPhoneNumber
-        };
+        // const nodemailer = require('nodemailer');
+        // var transporter = nodemailer.createTransport({
+        //     service: 'gmail',
+        //     type: "SMTP",
+        //     host: "smtp.gmail.com",
+        //     secure: true,
+        //     auth: {
+        //         user: 'chiccomosheserby@gmail.com',
+        //         pass: 'chiccomosheserby123'
+        //     }
+        // });
+        // let mailOptions = {
+        //     from: 'chiccomosheserby@gmail.com',
+        //     to: newOrder.clientEmail,
+        //     subject: 'we recived your order from delivery app DEMO - ' + newOrder.selectedBranch,
+        //     text: 'your order number for tracking: ' + newOrder.orderNum +
+        //      '\n' +
+        //      'name : ' + newOrder.clientName + '\n'
+        //     + 'phone number: ' + newOrder.clientPhoneNumber
+        // };
+        // let mailOptions2 = {
+        //     from: 'chiccomosheserby@gmail.com',
+        //     to: 'chiccomoshe@gmail.com',
+        //     subject: 'new order - ' + newOrder.selectedBranch,
+        //     text: 'order number: ' + newOrder.orderNum + '\n'
+        //         + 'name : ' + newOrder.clientName + '\n'
+        //         + 'phone number: ' + newOrder.clientPhoneNumber
+        // };
 
-        transporter.sendMail(mailOptions, function (error, info) {
-            if (error) {
-                console.log(error);
+        // transporter.sendMail(mailOptions, function (error, info) {
+        //     if (error) {
+        //         console.log(error);
 
-            } else {
+        //     } else {
 
-                console.log('Email sent');
-            }
-        });
-        transporter.sendMail(mailOptions2, function (error, info) {
-            if (error) {
-                console.log(error);
+        //         console.log('Email sent');
+        //     }
+        // });
+        // transporter.sendMail(mailOptions2, function (error, info) {
+        //     if (error) {
+        //         console.log(error);
 
-            } else {
+        //     } else {
 
-                console.log('Email sent');
-            }
-        });
+        //         console.log('Email sent');
+        //     }
+        // });
         //--------------- END - email ------------------//
 
     }

@@ -29,7 +29,7 @@ class DeliveryForm extends Component {
             return (
                 <div className = "formWrap">
                     {
-                        this.props.state.DeleiveryOrTakeAway === 'משלוח' ?
+                        this.props.state.DeleiveryOrTakeAway === 'delivery' ?
 
                             <form onSubmit={(e) => {
                                 e.preventDefault();
@@ -39,21 +39,21 @@ class DeliveryForm extends Component {
                                 <div className="deliveryForm">
                                     <div className="oneRow">
                                         <div className="city">
-                                            משלוח לסניף <span>{this.state.city}</span>
+                                        Delivery: <span>{this.state.city}</span>
                                         </div>
 
                                         <input
                                             onChange={(e) => { this.setState({ street: e.target.value }) }}
                                             onFocus={(e) => { e.target.placeholder = "" }}
-                                            onBlur={(e) => { e.target.placeholder = "רחוב" }}
-                                            placeholder="רחוב" name="street" type="text" required>
+                                            onBlur={(e) => { e.target.placeholder = "street" }}
+                                            placeholder="street" name="street" type="text" required>
                                         </input>
 
                                         <input
                                             onChange={(e) => { this.setState({ streetNumber: e.target.value }) }}
                                             onFocus={(e) => { e.target.placeholder = "" }} className="streetNum"
-                                            onBlur={(e) => { e.target.placeholder = "מספר רחוב" }}
-                                            placeholder="מספר רחוב" type="number" min="1" name="streetNumber" required>
+                                            onBlur={(e) => { e.target.placeholder = "street number" }}
+                                            placeholder="street number" type="number" min="1" name="streetNumber" required>
                                         </input>
 
                                     </div>
@@ -65,22 +65,22 @@ class DeliveryForm extends Component {
                                             // pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
                                              onChange={(e) => { this.setState({ phoneNumber: e.target.value }) }}
                                             onFocus={(e) => { e.target.placeholder = "" }}
-                                            onBlur={(e) => { e.target.placeholder = "טלפון" }}
-                                            placeholder="טלפון" name="phoneNumber" required>
+                                            onBlur={(e) => { e.target.placeholder = "phone" }}
+                                            placeholder="phone" name="phoneNumber" required>
                                         </input>
 
                                         <input
                                             onChange={(e) => { this.setState({ name: e.target.value }) }}
                                             onFocus={(e) => { e.target.placeholder = "" }}
-                                            onBlur={(e) => { e.target.placeholder = "שם" }}
-                                            placeholder="שם" name="name" type="text" >
+                                            onBlur={(e) => { e.target.placeholder = "name" }}
+                                            placeholder="name" name="name" type="text" >
                                         </input>
 
                                         <input
                                             onChange={(e) => { this.setState({ email: e.target.value }) }}
                                             onFocus={(e) => { e.target.placeholder = "" }}
-                                            onBlur={(e) => { e.target.placeholder = "כתובת מייל" }}
-                                            placeholder="כתובת מייל" name="email" type="text">
+                                            onBlur={(e) => { e.target.placeholder = "Email" }}
+                                            placeholder="Email" name="email" type="text">
                                         </input>
                                     </div>
                                     <div>
@@ -98,7 +98,7 @@ class DeliveryForm extends Component {
                                 <div className="deliveryForm">
                                     <div className="oneRow">
                                         <div className="city">
-                                           איסוף מסניף  <span>{this.state.city}</span>
+                                          TA: <span>{this.state.city}</span>
                                         </div>
                                     </div>
 
@@ -108,22 +108,22 @@ class DeliveryForm extends Component {
                                             // pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
                                             onChange={(e) => { this.setState({ phoneNumber: e.target.value }) }}
                                             onFocus={(e) => { e.target.placeholder = "" }}
-                                            onBlur={(e) => { e.target.placeholder = "טלפון" }}
-                                            placeholder="טלפון" name="phoneNumber" required>
+                                            onBlur={(e) => { e.target.placeholder = "phone" }}
+                                            placeholder="phone" name="phoneNumber" required>
                                         </input>
 
                                         <input
                                             onChange={(e) => { this.setState({ name: e.target.value }) }}
                                             onFocus={(e) => { e.target.placeholder = "" }}
-                                            onBlur={(e) => { e.target.placeholder = "שם" }}
-                                            placeholder="שם" name="name" type="text" >
+                                            onBlur={(e) => { e.target.placeholder = "name" }}
+                                            placeholder="name" name="name" type="text" >
                                         </input>
 
                                         <input
                                             onChange={(e) => { this.setState({ email: e.target.value }) }}
                                             onFocus={(e) => { e.target.placeholder = "" }}
-                                            onBlur={(e) => { e.target.placeholder = "כתובת מייל" }}
-                                            placeholder="כתובת מייל" name="email" type="text">
+                                            onBlur={(e) => { e.target.placeholder = "Email" }}
+                                            placeholder="Email" name="email" type="text">
                                         </input>
                                     </div>
                                     <input className="submitBtn" name="submit" type="submit" value="" />

@@ -16,22 +16,22 @@ class OrdersToDo extends Component {
                                     <div style={{
                                         fontWeight: "bolder"
                                     }}>{item.orderNum}</div>
-                                    <div><span>סניף: </span>{item.selectedBranch} </div>
-                                    <div><span>סוג משלוח:</span> {item.DeleiveryOrTakeAway}</div>
-                                    <div> <span>רחוב:</span> {item.clientStreet} </div>
-                                    <div><span>מספר רחוב: </span>{item.clientStreetNumber} </div>
-                                    <div><span> טלפון לקוח: </span>{item.clientPhoneNumber}</div>
-                                    <div><span> שם לקוח:</span> {item.clientName} </div>
-                                    <div><span>אימייל לקוח:</span> {item.clientEmail} </div>
-                                    <div><span>מזומן / אשראי:</span> {item.paymentType}</div>
-                                    <div><span>ההזמנה בוצעה ב:</span> {item.orderTime} </div>
-                                    <div><span>סהכ לתשלום:</span> {item.total}</div>
+                                    <div><span>Branch: </span>{item.selectedBranch} </div>
+                                    <div><span>Order Type:</span> {item.DeleiveryOrTakeAway}</div>
+                                    <div> <span>Street:</span> {item.clientStreet} </div>
+                                    <div><span>Street number: </span>{item.clientStreetNumber} </div>
+                                    <div><span> Client Phone: </span>{item.clientPhoneNumber}</div>
+                                    <div><span> Client Name:</span> {item.clientName} </div>
+                                    <div><span>Client Email:</span> {item.clientEmail} </div>
+                                    <div><span>Cash / Credit:</span> {item.paymentType}</div>
+                                    <div><span>Time:</span> {item.orderTime} </div>
+                                    <div><span>Total: </span> {item.total}</div>
 
                                     <div><span>סטטוס ההזמנה:</span> {item.status}</div>
                                     <div className="products">
-                                        <div className=""> <span>מנה</span> </div>
-                                        <div className=""> <span>מחיר</span> </div>
-                                        <div className=""> <span>כמות </span></div>
+                                        <div className=""> <span>Dish</span> </div>
+                                        <div className=""> <span>Price</span> </div>
+                                        <div className=""> <span>Qtt </span></div>
                                     </div>
                                     {
                                         item.orderItemsList.map((item2, index2) => {

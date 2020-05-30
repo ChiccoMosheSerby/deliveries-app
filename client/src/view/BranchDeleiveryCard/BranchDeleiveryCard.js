@@ -27,7 +27,7 @@ class BranchDeleiveryCard extends Component {
                     margin: "auto",
                     border: "solid 1px Var(--firstColor)"
                 }}></div>
-                הזמנות מסניף
+              
                 <OrderBtn
                     branchObj={this.props.branchObj}
                     setOrderObj_Branch={this.props.setOrderObj_Branch}
@@ -35,7 +35,7 @@ class BranchDeleiveryCard extends Component {
                     state={this.props.state}
                 />
                 <div className="links">
-                    <div className="tooltip onlyDesktop">פרטי הסניף
+                    <div className="tooltip onlyDesktop">Branch Details
                 <span className="tooltiptext">
                             <Branch
                                 branchPhoneNum={this.props.branchObj.branchPhoneNum}

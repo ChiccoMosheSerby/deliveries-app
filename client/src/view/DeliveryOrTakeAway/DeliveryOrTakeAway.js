@@ -26,7 +26,7 @@ class DeliveryOrTakeAway extends Component {
                         this.props.setOrderObj_orderType(this.state.selectedOption[0])
                     }}
                         to={this.props.link1}>
-                            {this.props.option1}
+                         Delivery
                         <div style={{
                         backgroundImage:"url('img/deliveryIcone.gif')",
                         backgroundPosition:"center center",
@@ -41,7 +41,7 @@ class DeliveryOrTakeAway extends Component {
                         this.props.setOrderObj_orderType(this.state.selectedOption[1])
                     }}
                         to={this.props.link2}>
-                            {this.props.option2}
+                          Take Away
                         <div style={{
                         backgroundImage:"url('img/TA.gif')",
                         backgroundPosition:"center",

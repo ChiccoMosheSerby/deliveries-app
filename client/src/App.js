@@ -224,11 +224,11 @@ class App extends Component {
             <header className="App-header">
               <form onSubmit={(e) => { this.isManager(e) }}>
                 <div className="manager">
-                  <div> מנהל: <input name="pass" type="text" placeholder = "סיסמא 1234" autocomplete="off"></input></div>
+                  <div> Manager: <input name="pass" type="text" placeholder = "Pass 1234" autocomplete="off"></input></div>
                   <div > <input style={{
 
                     height: "100%"
-                  }} name="submit" type="submit" value="כנס" ></input></div>
+                  }} name="submit" type="submit" value="Go" ></input></div>
                 </div>
               </form>
               <div>
@@ -237,7 +237,7 @@ class App extends Component {
 
               <form onSubmit={(e) => { this.orderStatusToShow(e) }}>
                 <div className="orderNum">
-                  <div>   הזן/י מספר הזמנה לבדיקת סטטוס הזמנתך: <input style={{
+                  <div>  Please enter your order number: <input style={{
                     width: "400px",
                     maxWidth: "80vw"
                   }} name="orderNum" type="text" autocomplete="off"></input></div>
@@ -245,7 +245,7 @@ class App extends Component {
                     color: "black",
                     height: "100%"
 
-                  }} name="submit" type="submit" value="אישור"></input></div>
+                  }} name="submit" type="submit" value="Go"></input></div>
                 </div>
               </form>
 
@@ -258,7 +258,8 @@ class App extends Component {
                   fontWeight: 'bolder',
                   backgroundColor: '#FFF',
                   padding: '20px'
-                }}>הזמנתך במטבח מתבשלת<p>תודה על הסבלנות</p></div> :
+                }}>your order in the kitchen<p>
+                Thank you for your patience</p></div> :
                 null
             }
             {
@@ -267,7 +268,7 @@ class App extends Component {
                   fontWeight: 'bolder',
                   backgroundColor: '#FFF',
                   padding: '20px'
-                }}>מוכן!! בדרך אליך במידה וביצעת הזמנת משלוח - אם ביצעת איסוף עצמי אז... בוא כבר!</p>
+                }}>Ready! on the way to you! (if you order TA - come and take it!)</p>
                 :
                 null
             }
@@ -278,7 +279,7 @@ class App extends Component {
               <OrdersToDo
                 // fullOrder={this.state.orderList}
                 ordersToDo={this.state.orderItems}
-                done={this.done} msg="אין הזמנות" ></OrdersToDo>
+                done={this.done} msg="no orders" ></OrdersToDo>
 
               :
 
@@ -312,7 +313,7 @@ class App extends Component {
                 <Route path="/orderStep2">
                   <DeliveryOrTakeAway
                     link1="/deliveryForm" link2="/deliveryForm"
-                    option1="משלוח" option2="איסוף עצמי"
+                    option1="delivery" option2="takeAway"
                     state={this.state} setOrderObj_orderType={this.setOrderObj_orderType} />
                 </Route>
 
@@ -330,7 +331,7 @@ class App extends Component {
                 {/* payment type page - -------------------------- */}
                 <Route path="/payOptions">
                   <CreditOrCash link1="/credit" link2="/cash"
-                    option1="אשראי" option2="מזומן"
+                    option1="Credit" option2="Cash"
                     state={this.state}
                     setOrderObj_paymentType={this.setOrderObj_paymentType}
                   />
@@ -344,7 +345,7 @@ class App extends Component {
 
                 {/* send client his order link --------------------------- */}
                 <Route path="/trackOrder">
-                  <p className="finalMsg">להלן מספר הזמנה לבדיקת סטטוס הזמנה :
+                  <p className="finalMsg">Your order number - you can track your order with this number :
                       <div>{this.state.orderTrack}</div>
                     <Link to={'/trackOrder/' + this.state.orderTrack}>click the link</Link>
                   </p>

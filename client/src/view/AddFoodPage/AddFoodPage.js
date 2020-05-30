@@ -159,9 +159,9 @@ class AddFoodPage extends Component {
                                                     fontWeight: "bold"
                                                 }}>
 
-                                                סהכ לתשלום: {this.state.total} שח
+                                                TOTAL: {this.state.total} $
                                 <Link onClick={() => { this.props.getOrderList(this.state.orderList, this.state.total) }}
-                                                    to="/PayOptions"> - מעבר לתשלום
+                                                    to="/PayOptions"> - Payment
                                 <div className="goToBtn"></div>
                                                 </Link>
                                             </div>
@@ -179,7 +179,7 @@ class AddFoodPage extends Component {
 
                     {/* food cards - mobile and desktop -------------------------------------------*/}
 
-                    <p className="dishTypeHeader">ראשונות</p>
+                    <p className="dishTypeHeader">firsts</p>
 
                     <div className="dishType">
 
@@ -195,7 +195,7 @@ class AddFoodPage extends Component {
 
                                         <div>
                                             <div className="dishName">{dish.dishName}</div>
-                                            <div className="tooltip">פרטי מנה<span className="tooltiptext">{dish.description}</span>
+                                            <div className="tooltip">Details<span className="tooltiptext">{dish.description}</span>
                                             </div>
                                         </div>
                                         <div className="addBtnCard plus"
@@ -211,7 +211,7 @@ class AddFoodPage extends Component {
                         }
                     </div>
 
-                    <p className="dishTypeHeader">עיקריות</p>
+                    <p className="dishTypeHeader">Main</p>
 
                     <div className="dishType">
                         {
@@ -226,7 +226,7 @@ class AddFoodPage extends Component {
 
                                         <div>
                                             <div className="dishName">{dish.dishName}</div>
-                                            <div className="tooltip">פרטי מנה<span className="tooltiptext">{dish.description}</span>
+                                            <div className="tooltip">Details<span className="tooltiptext">{dish.description}</span>
                                             </div>
                                         </div>
                                         <div className="addBtnCard plus"
@@ -240,7 +240,7 @@ class AddFoodPage extends Component {
 
                         }
                     </div>
-                    <p className="dishTypeHeader">קינוחים</p>
+                    <p className="dishTypeHeader">diserts</p>
 
                     <div className="dishType">
 
@@ -256,7 +256,7 @@ class AddFoodPage extends Component {
 
                                         <div>
                                             <div className="dishName">{dish.dishName}</div>
-                                            <div className="tooltip">פרטי מנה<span className="tooltiptext">{dish.description}</span>
+                                            <div className="tooltip">Details<span className="tooltiptext">{dish.description}</span>
                                             </div>
                                         </div>
                                         <div className="addBtnCard plus"
@@ -324,9 +324,9 @@ class AddFoodPage extends Component {
                                             fontWeight: "bold"
                                         }}>
 
-                                        סהכ לתשלום: {this.state.total} שח
+                                       TOTAL: {this.state.total} $
                                 <Link onClick={() => { this.props.getOrderList(this.state.orderList, this.state.total) }}
-                                            to="/PayOptions"> - מעבר לתשלום
+                                            to="/PayOptions"> - Payment
                                 <div className="goToBtn"></div>
                                         </Link>
                                     </div>

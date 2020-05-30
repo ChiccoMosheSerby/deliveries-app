@@ -30,7 +30,7 @@
     /* max-height: calc(100vh - 100px); */
     position: sticky;
     top:147px;
-    left:2px;
+    right:2px;
     overflow-y:scroll;
     background-color: rgba(255, 255, 255, 0.719);
     border-radius: 10px;
@@ -77,7 +77,7 @@
 }
 
 .foodWrapper p{
-text-align: right;
+text-align: left;
 }
 
 .addBtnCard{
@@ -131,8 +131,8 @@ text-align: right;
 .orderItemCard{
     display:grid;
     grid-template-columns: 1fr 0.5fr 0.5fr 0.5fr 0.5fr;
-    text-align: right;
-    justify-items: flex-start;
+    text-align: left;
+    justify-items: center;
     /* border:var(--firstColorOpacity) 1px solid; */
     border-radius: 10px;
     width: 70%;

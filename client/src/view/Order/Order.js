@@ -39,28 +39,28 @@ class Order extends Component {
     render() {
         return (
             <div className="orderWrapper">
-                <div className="orderHeader">פרטי ההזמנה</div>
+                <div className="orderHeader">Order details</div>
                 <div className='dateAndTime'> {this.props.state.orderTime}</div>
 
                 <div className="orderRow">
                     
-                    <div>סניף:</div><div> {this.props.state.selectedBranch}</div>
-                    <div>שם:</div><div> {this.props.state.clientName}</div>
+                    <div>Branch:</div><div> {this.props.state.selectedBranch}</div>
+                    <div>Name:</div><div> {this.props.state.clientName}</div>
 
                 </div>
                 <div className="orderRow">
-                    <div>סוג הזמנה:</div><div>  {this.props.state.DeleiveryOrTakeAway}</div>
-                    <div>טלפון: </div><div>{this.props.state.clientPhoneNumber}</div>
+                    <div>Order Type:</div><div>  {this.props.state.DeleiveryOrTakeAway}</div>
+                    <div>Phone: </div><div>{this.props.state.clientPhoneNumber}</div>
 
                 </div>
                 <div className="orderRow">
-                    <div>רחוב:</div><div> {this.props.state.clientStreet}  {this.props.state.clientStreetNumber}</div>
-                    <div>אימייל:  </div><div>{this.props.state.clientEmail}</div>
+                    <div>Street:</div><div> {this.props.state.clientStreet}  {this.props.state.clientStreetNumber}</div>
+                    <div>Email:  </div><div>{this.props.state.clientEmail}</div>
 
                 </div>
                 <div className="orderRow">
-                    <div>תשלום: </div><div>{this.props.state.paymentType}</div>
-                    <div>סכום לתשלום: </div><div>{this.props.state.total}</div>
+                    <div>Payment Type: </div><div>{this.props.state.paymentType}</div>
+                    <div>Total: </div><div>{this.props.state.total} $</div>
 
                 </div>
             </div>

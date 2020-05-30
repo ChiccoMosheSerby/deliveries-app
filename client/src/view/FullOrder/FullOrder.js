@@ -61,7 +61,7 @@ class FullOrder extends Component {
                             color:'white'
                         }}
                         className="goToOrderBtn"
-                            onClick={() => this.props.newOrderAccepted(this.state.newOrderTodo)}>אישור</div>
+                            onClick={() => this.props.newOrderAccepted(this.state.newOrderTodo)}>Approve</div>
                     </Link>
                 </div>
 
