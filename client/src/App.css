@@ -107,7 +107,9 @@ a{
 }
 
 .App-header {
-  background-color:var(--headerBkColor);
+  background-color:transparent;
+
+  background-image:linear-gradient(96deg, var(--firstColor) 8.43%, #f39398 94.44%);
   display: flex;
   flex-direction: column;
   align-items: center;

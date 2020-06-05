@@ -232,7 +232,7 @@ class App extends Component {
                 </div>
               </form>
               <div>
-                <Link to="/"> <img src="/img/logo.png" className="App-logo" alt="logo" /></Link>
+             <Link to="/"><img src="/img/logo.png" className="App-logo" alt="logo" /></Link> 
               </div>
 
               <form onSubmit={(e) => { this.orderStatusToShow(e) }}>
